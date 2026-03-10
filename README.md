@@ -55,15 +55,15 @@ After installation, restart Claude Code. The skill triggers automatically when y
 ## Example prompts
 
 ```
-我有一个 Express.js 的后端项目，所有业务逻辑都写在 controller 里。怎么重构？
+My Express.js backend has all business logic in controllers. How should I refactor it?
 
-Order 实体直接 import 了 Stripe SDK 来处理支付，这样设计有什么问题？
+Our Order entity directly imports the Stripe SDK for payments. What's wrong with this design?
 
-5 个人用的内部工具，同事建议用微服务 + Kafka + Redis，你觉得呢？
+We're building an internal tool for 5 users. A colleague suggests microservices + Kafka + Redis. What do you think?
 
-我们要设计一个类似 Twitter 的社交媒体平台，如何设计架构？
+We need to design a Twitter-like social media platform. How should we architect it?
 
-从 MongoDB 迁移到 PostgreSQL，需要重写所有代码吗？
+We're migrating from MongoDB to PostgreSQL. Do we need to rewrite all our code?
 ```
 
 ## Skill structure
