@@ -25,21 +25,29 @@ The skill's biggest impact is on system design — without it, Claude defaults t
 
 ## Installation
 
-### Option 1: Copy to skills directory (recommended)
+### Option 1: npx skills (recommended)
 
 ```bash
-# Clone the repo
-git clone https://github.com/YOUR_USERNAME/clean-architecture-skill.git
-
-# Copy to Claude Code skills directory
-cp -r clean-architecture-skill/clean-architecture ~/.claude/skills/
+npx skills add tokenaissance/clean-architecture-skill
 ```
 
-### Option 2: Symlink (for development)
+To install for a specific agent only:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/clean-architecture-skill.git
-ln -s "$(pwd)/clean-architecture-skill/clean-architecture" ~/.claude/skills/clean-architecture
+npx skills add tokenaissance/clean-architecture-skill -a claude-code
+```
+
+### Option 2: Claude Code plugin
+
+```bash
+claude plugin add tokenaissance/clean-architecture-skill
+```
+
+### Option 3: Manual
+
+```bash
+git clone https://github.com/tokenaissance/clean-architecture-skill.git
+cp -r clean-architecture-skill/clean-architecture ~/.claude/skills/
 ```
 
 After installation, restart Claude Code. The skill triggers automatically when you ask about architecture, layering, refactoring, dependency management, or technology selection.
