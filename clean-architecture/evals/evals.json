@@ -1,0 +1,77 @@
+{
+  "skill_name": "clean-architecture",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我有一个 Express.js 的后端项目，目前所有业务逻辑都写在 controller 里，数据库查询也直接在 controller 中调用。项目越来越大，改一个功能经常要改好几个文件。我想重构一下，应该怎么分层？",
+      "expected_output": "Should reference Clean Architecture layers, dependency rule, and provide concrete refactoring steps with code examples",
+      "files": [],
+      "assertions": [
+        {
+          "name": "uses_clean_architecture_terminology",
+          "description": "Response must use Clean Architecture layer names: Entity/Entities, Use Case(s), Interface Adapter(s), Framework/Driver(s) - not generic terms like 'business layer' or 'data layer'"
+        },
+        {
+          "name": "explains_dependency_rule",
+          "description": "Response must explicitly explain the dependency rule: dependencies point inward, outer layers depend on inner layers, never the reverse"
+        },
+        {
+          "name": "provides_concrete_steps",
+          "description": "Response must provide a numbered or structured step-by-step refactoring plan"
+        },
+        {
+          "name": "includes_code_examples",
+          "description": "Response must include at least one before/after code example showing the refactoring"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我们团队在做一个电商系统，现在 Order 实体直接 import 了 Stripe 的 SDK 来处理支付。这样设计有什么问题？怎么改？",
+      "expected_output": "Should identify DIP violation, explain why business entities shouldn't depend on external SDKs, and show interface-based solution",
+      "files": [],
+      "assertions": [
+        {
+          "name": "identifies_dependency_violation",
+          "description": "Response must identify this as a Dependency Inversion Principle (DIP) violation or explain that entities shouldn't depend on external frameworks"
+        },
+        {
+          "name": "explains_why_problematic",
+          "description": "Response must explain why entities depending on SDKs is problematic (e.g., tight coupling, hard to test, violates dependency rule)"
+        },
+        {
+          "name": "proposes_interface_solution",
+          "description": "Response must propose using an interface/port to decouple the entity from Stripe"
+        },
+        {
+          "name": "shows_refactored_code",
+          "description": "Response must show code demonstrating the interface-based solution with before/after or implementation example"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "我要开发一个内部工具，大概 5 个人用，做简单的 CRUD 操作。同事建议我用微服务架构 + Kafka 消息队列 + Redis 缓存。你觉得呢？",
+      "expected_output": "Should apply Musk's 'question the requirement' and 'delete' steps, push back on over-engineering, recommend simple architecture",
+      "files": [],
+      "assertions": [
+        {
+          "name": "questions_complexity",
+          "description": "Response must question or challenge the need for microservices/Kafka/Redis given the simple requirements"
+        },
+        {
+          "name": "pushes_back_on_overengineering",
+          "description": "Response must explicitly state that the proposed architecture is over-engineered or unnecessarily complex"
+        },
+        {
+          "name": "recommends_simple_alternative",
+          "description": "Response must recommend a simpler architecture (e.g., monolith, single database, no message queue)"
+        },
+        {
+          "name": "explains_reasoning",
+          "description": "Response must explain why simpler is better in this context (e.g., team size, use case, maintenance burden)"
+        }
+      ]
+    }
+  ]
+}

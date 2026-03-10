@@ -1,0 +1,272 @@
+{
+  "skill_name": "clean-architecture",
+  "eval_set_name": "system-design-scenarios",
+  "description": "Test cases based on popular system design repositories (donnemartin/system-design-primer, etc.) to validate Clean Architecture principles in real-world system design scenarios",
+  "source": "https://github.com/donnemartin/system-design-primer",
+  "evals": [
+    {
+      "id": 4,
+      "prompt": "我们要设计一个类似 Twitter 的社交媒体平台。用户可以发推文、关注其他用户、查看时间线。预计有 1000 万用户，每天 1 亿条推文。请问应该如何设计架构？需要用到哪些组件（缓存、消息队列、数据库等）？",
+      "expected_output": "Should apply Clean Architecture layering to system design, separate business logic from infrastructure, use dependency inversion for external services, and recommend appropriate scalability patterns",
+      "files": [],
+      "assertions": [
+        {
+          "name": "applies_clean_architecture_to_system_design",
+          "description": "Should organize the system using Clean Architecture layers (Entities for core business rules like Tweet/User, Use Cases for timeline generation, Adapters for API/cache, Frameworks for specific tech choices)"
+        },
+        {
+          "name": "separates_policy_from_mechanism",
+          "description": "Should separate high-level policy (business rules) from low-level mechanisms (database, cache, message queue choices)"
+        },
+        {
+          "name": "recommends_scalability_patterns",
+          "description": "Should recommend appropriate patterns like caching, load balancing, database sharding, but frame them as implementation details, not core architecture"
+        },
+        {
+          "name": "uses_dependency_inversion_for_infrastructure",
+          "description": "Should show how to use interfaces/ports for cache, database, message queue so they can be swapped without changing business logic"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "我们的电商系统现在是单体应用，随着业务增长，团队建议拆分成微服务：用户服务、订单服务、支付服务、库存服务。每个服务独立数据库，通过 REST API 通信。你觉得这个方案怎么样？",
+      "expected_output": "Should question whether microservices are necessary, apply Musk's algorithm to challenge requirements, and explain that architectural boundaries exist within services, not just between them",
+      "files": [],
+      "assertions": [
+        {
+          "name": "questions_microservice_necessity",
+          "description": "Should question whether the team size, deployment needs, and actual coupling justify microservices"
+        },
+        {
+          "name": "explains_boundaries_within_services",
+          "description": "Should explain that architectural boundaries (Clean Architecture layers) exist WITHIN each service, not just between services"
+        },
+        {
+          "name": "warns_about_distributed_system_complexity",
+          "description": "Should warn about added complexity: network latency, distributed transactions, data consistency, debugging difficulty"
+        },
+        {
+          "name": "recommends_modular_monolith_first",
+          "description": "Should recommend starting with a well-structured modular monolith using Clean Architecture, then extracting services only when truly needed"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "我们的 API 响应很慢，数据库查询要 500ms。团队建议加 Redis 缓存。但我担心缓存一致性问题——如果数据更新了，缓存怎么失效？有什么好的方案吗？",
+      "expected_output": "Should frame caching as an implementation detail in the Frameworks layer, show how to use Repository pattern with cache-aside or write-through strategies, and keep business logic unaware of caching",
+      "files": [],
+      "assertions": [
+        {
+          "name": "frames_cache_as_implementation_detail",
+          "description": "Should explain that caching is a Frameworks & Drivers layer concern, not a business logic concern"
+        },
+        {
+          "name": "uses_repository_pattern",
+          "description": "Should show how to implement caching within Repository/Gateway, keeping Use Cases unaware of cache existence"
+        },
+        {
+          "name": "explains_cache_strategies",
+          "description": "Should explain cache-aside, write-through, or write-behind strategies and their trade-offs"
+        },
+        {
+          "name": "shows_dependency_inversion",
+          "description": "Should show how Use Case depends on a Repository interface, and the concrete implementation handles both database and cache"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "我们要设计一个短链接服务（类似 bit.ly）。用户输入长 URL，系统生成短链接。访问短链接时重定向到原 URL。预计每天 1 亿次生成，10 亿次访问。请设计架构。",
+      "expected_output": "Should identify core business rules (URL shortening algorithm, collision handling) as Entities, URL generation/lookup as Use Cases, and storage/caching as implementation details",
+      "files": [],
+      "assertions": [
+        {
+          "name": "identifies_core_business_rules",
+          "description": "Should identify core business rules: URL shortening algorithm (base62 encoding), collision detection, expiration policy as Entity layer"
+        },
+        {
+          "name": "separates_use_cases",
+          "description": "Should separate Use Cases: GenerateShortURL (write path) and ResolveShortURL (read path)"
+        },
+        {
+          "name": "treats_storage_as_detail",
+          "description": "Should treat database choice (SQL vs NoSQL), caching strategy, and CDN as Frameworks & Drivers layer details"
+        },
+        {
+          "name": "shows_testable_business_logic",
+          "description": "Should show how business logic (URL shortening, collision handling) can be tested without database or cache"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "我们的系统用 MySQL 存储用户数据，现在数据量太大（1 亿用户），查询变慢。DBA 建议做分库分表（sharding）。但我担心代码要大改，业务逻辑都要改。有什么办法减少影响吗？",
+      "expected_output": "Should explain that if business logic is properly separated using Clean Architecture, sharding only affects the Repository/Gateway layer, not Use Cases or Entities",
+      "files": [],
+      "assertions": [
+        {
+          "name": "explains_sharding_as_implementation_detail",
+          "description": "Should explain that database sharding is a Frameworks & Drivers layer concern, not a business logic concern"
+        },
+        {
+          "name": "shows_repository_abstraction",
+          "description": "Should show how Repository interface hides sharding logic from Use Cases"
+        },
+        {
+          "name": "demonstrates_minimal_business_logic_change",
+          "description": "Should demonstrate that if Clean Architecture is followed, business logic (Use Cases, Entities) requires zero or minimal changes"
+        },
+        {
+          "name": "provides_sharding_strategy",
+          "description": "Should provide sharding strategy (by user_id, consistent hashing) but emphasize it's hidden behind Repository interface"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "我们的订单系统需要保证数据一致性。用户下单后，要扣减库存、创建订单、发送通知。如果中间某一步失败，前面的操作要回滚。现在用的是数据库事务，但跨服务后事务不好用了。怎么办？",
+      "expected_output": "Should explain Saga pattern or event sourcing as Use Case layer orchestration, keeping business rules in Entities, and treating message queue/event store as infrastructure",
+      "files": [],
+      "assertions": [
+        {
+          "name": "identifies_business_rule",
+          "description": "Should identify the core business rule: order placement is atomic (all steps succeed or all fail)"
+        },
+        {
+          "name": "recommends_saga_or_event_sourcing",
+          "description": "Should recommend Saga pattern (orchestration or choreography) or Event Sourcing to handle distributed transactions"
+        },
+        {
+          "name": "keeps_business_logic_separate",
+          "description": "Should show how business logic (order validation, inventory check) stays in Use Cases/Entities, while Saga coordination is in Application layer"
+        },
+        {
+          "name": "treats_message_queue_as_detail",
+          "description": "Should treat message queue (Kafka, RabbitMQ) as a Frameworks & Drivers layer detail, accessed through interfaces"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "我们要从 REST API 迁移到 GraphQL，因为前端团队抱怨 REST 接口太多，每个页面要调用好几个接口。但后端担心要重写很多代码。迁移成本大吗？",
+      "expected_output": "Should explain that if Clean Architecture is followed, switching from REST to GraphQL only affects the Interface Adapters layer (Controllers/Resolvers), Use Cases can be reused",
+      "files": [],
+      "assertions": [
+        {
+          "name": "explains_api_as_adapter",
+          "description": "Should explain that REST and GraphQL are both Interface Adapters, sitting in the same architectural layer"
+        },
+        {
+          "name": "shows_use_case_reuse",
+          "description": "Should show how existing Use Cases can be reused by both REST controllers and GraphQL resolvers"
+        },
+        {
+          "name": "demonstrates_minimal_migration_cost",
+          "description": "Should demonstrate that migration cost is low if business logic is properly separated - only need to write new GraphQL resolvers"
+        },
+        {
+          "name": "recommends_gradual_migration",
+          "description": "Should recommend gradual migration: run REST and GraphQL side-by-side, both calling the same Use Cases"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "我们的系统要支持多租户（multi-tenancy）。每个租户的数据要隔离，但共享同一套代码。有人建议每个租户一个数据库，有人建议共享数据库但加 tenant_id 字段。哪种方案更符合架构原则？",
+      "expected_output": "Should explain that multi-tenancy strategy is an infrastructure decision, business logic should be tenant-agnostic, use dependency injection to provide tenant context",
+      "files": [],
+      "assertions": [
+        {
+          "name": "treats_tenancy_as_infrastructure_concern",
+          "description": "Should explain that multi-tenancy implementation (separate DB vs shared DB) is a Frameworks & Drivers layer decision"
+        },
+        {
+          "name": "keeps_business_logic_tenant_agnostic",
+          "description": "Should show how business logic (Use Cases, Entities) remains tenant-agnostic, receiving tenant context through dependency injection"
+        },
+        {
+          "name": "compares_tenancy_strategies",
+          "description": "Should compare strategies: separate DB (strong isolation, high cost) vs shared DB with tenant_id (weak isolation, low cost) vs schema-per-tenant (middle ground)"
+        },
+        {
+          "name": "shows_repository_abstraction",
+          "description": "Should show how Repository interface hides tenancy implementation from business logic"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "我们的系统要接入多个第三方服务：支付（Stripe、PayPal）、物流（顺丰、圆通）、短信（阿里云、腾讯云）。每个服务的 API 都不一样。怎么设计才能方便切换和扩展？",
+      "expected_output": "Should use Adapter pattern, define domain interfaces (PaymentGateway, ShippingProvider, SMSService), implement adapters for each vendor in infrastructure layer",
+      "files": [],
+      "assertions": [
+        {
+          "name": "defines_domain_interfaces",
+          "description": "Should define domain interfaces (ports): IPaymentGateway, IShippingProvider, ISMSService in Use Case layer"
+        },
+        {
+          "name": "implements_vendor_adapters",
+          "description": "Should implement vendor-specific adapters (StripeAdapter, PayPalAdapter, etc.) in Frameworks & Drivers layer"
+        },
+        {
+          "name": "uses_dependency_injection",
+          "description": "Should use dependency injection or factory pattern to select vendor at runtime based on configuration"
+        },
+        {
+          "name": "shows_business_logic_independence",
+          "description": "Should show how business logic (Use Cases) depends only on interfaces, completely unaware of which vendor is used"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "我们的系统现在用 MongoDB，但新来的 DBA 说 MongoDB 不适合我们的场景，建议换成 PostgreSQL。但开发团队担心要重写所有数据访问代码。真的要全部重写吗？",
+      "expected_output": "Should explain that if Repository pattern is used, switching databases only requires implementing a new Repository, Use Cases and Entities remain unchanged",
+      "files": [],
+      "assertions": [
+        {
+          "name": "explains_database_as_detail",
+          "description": "Should explain that database choice is a Frameworks & Drivers layer detail, not an architectural decision"
+        },
+        {
+          "name": "shows_repository_pattern",
+          "description": "Should show how Repository interface abstracts data access, allowing MongoRepository to be replaced with PostgresRepository"
+        },
+        {
+          "name": "demonstrates_zero_business_logic_change",
+          "description": "Should demonstrate that Use Cases and Entities require zero changes when switching databases"
+        },
+        {
+          "name": "recommends_gradual_migration",
+          "description": "Should recommend gradual migration: implement PostgresRepository, run dual-write for a period, then switch over"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "我们要设计一个实时聊天系统（类似微信）。需要支持一对一聊天、群聊、消息已读回执、离线消息推送。预计 1000 万用户，峰值 10 万并发连接。请设计架构。",
+      "expected_output": "Should identify core business rules (message delivery, read receipts, group membership) as Entities, use WebSocket/long-polling as infrastructure details, separate online/offline message handling as Use Cases",
+      "files": [],
+      "assertions": [
+        {
+          "name": "identifies_core_entities",
+          "description": "Should identify core entities: Message, Conversation, User, Group with business rules like message ordering, read status"
+        },
+        {
+          "name": "separates_use_cases",
+          "description": "Should separate Use Cases: SendMessage, DeliverMessage, MarkAsRead, HandleOfflineMessage"
+        },
+        {
+          "name": "treats_transport_as_detail",
+          "description": "Should treat transport mechanism (WebSocket, long-polling, Server-Sent Events) as Frameworks & Drivers layer detail"
+        },
+        {
+          "name": "recommends_scalability_patterns",
+          "description": "Should recommend patterns: connection server (stateful), message server (stateless), message queue for offline messages, but frame as infrastructure choices"
+        }
+      ]
+    }
+  ]
+}
