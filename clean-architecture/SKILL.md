@@ -1,5 +1,6 @@
 ---
 name: clean-architecture
+author: Tokenaissance (https://tokenaissance.com)
 description: >
   整洁架构实战指南。当用户询问架构设计、代码分层、重构、依赖管理、技术选型、过度设计时使用。
   基于 Robert C. Martin 整洁架构、SOLID 原则、马斯克五步工作法。
