@@ -1,0 +1,196 @@
+{
+  "schema_version": "2.0.0-fastagent-lite",
+  "generated_at": "2026-08-05",
+  "package": {
+    "name": "clean-architecture",
+    "version": "1.1.1",
+    "owner": "Tokenaissance",
+    "maturity_tier": "governed",
+    "lifecycle_stage": "library",
+    "upstream_inspiration": "wondelai/skills:clean-architecture; affaan-m/everything-claude-code; giuseppe-trisciuoglio/developer-kit; pproenca/dot-skills",
+    "upstream_sync": {
+      "reviewed_at": "2026-08-05",
+      "policy": "semantic adoption of Robert C. Martin Clean Architecture and Musk's five-step method; prior-art candidates compared across skills.sh and SkillsMP"
+    }
+  },
+  "intent": {
+    "description": "整洁架构（Clean Architecture）实战指南。当用户询问四层架构、依赖方向与依赖反转、实体直接依赖外部 SDK、数据访问层（repository）设计、微服务拆分、技术选型评估、或过度设计问题时使用。处理 Express/Next.js/Go/Spring 项目中的业务逻辑组织、MongoDB→PostgreSQL 迁移、REST→GraphQL 迁移、接入第三方 Stripe/PayPal、Redis 缓存与 Kafka 消息队列选型。基于 Robert C. Martin 整洁架构、SOLID 原则与依赖规则评估架构，用马斯克五步法防止过度设计。不要触发：纯代码质量、DDD、系统设计面试、单个 DTO 微观决策、缓存库选择、依赖注入框架调试、画架构图、翻译或格式化请求——直接回答而不调用本技能。\n",
+    "job_to_be_done": "Answer layered-architecture, dependency-direction, technology-selection, and over-engineering questions with a four-layer model, dependency rule, user-stack mapping, and an anti-over-engineering check.",
+    "target_users": [
+      "developers refactoring monoliths or layered code",
+      "teams evaluating microservices / Kafka / Redis / caching",
+      "engineers migrating between data stores or API styles",
+      "reviewers judging dependency direction and adapter boundaries"
+    ],
+    "inputs": [
+      "code snippets with suspected layering or dependency violations",
+      "technology-selection or migration questions",
+      "architecture design proposals",
+      "requirements with scale/team/change-frequency context"
+    ],
+    "outputs": [
+      "diagnosis and four-layer mapping",
+      "dependency-rule explanation with direction arrows",
+      "framework-to-layer mapping for the user's stack",
+      "minimal code example with layer labels",
+      "anti-over-engineering verdict via Musk's five steps"
+    ],
+    "exclusions": [
+      "pure code quality reviews",
+      "DDD or system-design interview questions",
+      "single-DTO micro decisions",
+      "cache-library choice between Redis and Memcached",
+      "framework mechanism debugging and SQL tuning",
+      "diagram drawing, translation, formatting, copywriting"
+    ],
+    "defaults": {
+      "copyright": "Copyright (c) 2026 Tokenaissance",
+      "attribution": "Inspired by Robert C. Martin's Clean Architecture and the upstream repositories listed in upstream_inspiration"
+    }
+  },
+  "triggers": {
+    "should_trigger": [
+      "我的 Express 项目所有业务逻辑都写在 controller 里，数据库查询也直接调用，改一个功能要改好几个文件，怎么分层重构？",
+      "Order 实体直接 import 了 Stripe SDK 处理支付，这样设计有什么问题？怎么改？",
+      "5 个人用的内部 CRUD 工具，同事建议微服务 + Kafka + Redis，你觉得有必要吗？",
+      "我们的单体应用要拆微服务：用户、订单、支付各独立服务独立数据库，REST 通信，方案怎么样？",
+      "要从 REST 迁移到 GraphQL，后端担心要重写很多代码，迁移成本大吗？",
+      "要接入多个第三方：支付 Stripe/PayPal、物流、短信，怎么设计才能方便切换和扩展？",
+      "现在用 MongoDB，DBA 建议换 PostgreSQL，开发团队担心要重写所有数据访问代码，真的要全部重写吗？",
+      "User 这个实体直接依赖了数据库驱动，违反依赖规则吗？怎么解耦？"
+    ],
+    "should_not_trigger": [
+      "画一下我们系统的架构图，用 mermaid 语法画出来",
+      "为什么我的依赖注入不生效，报 null 注入错误",
+      "帮我 debug 这个登录接口的 500 错误",
+      "这个 React 组件要不要拆成两个子组件？",
+      "这个 SQL 查询为什么这么慢，怎么加索引优化？",
+      "帮我把这段代码格式化一下",
+      "翻译一下这篇关于 clean architecture 的文章",
+      "帮我写个产品发布会的标题"
+    ],
+    "near_neighbor": [
+      "这个接口要不要加一个 DTO 类？",
+      "这个 service 类的职责是不是太杂了？",
+      "缓存选型用 Redis 还是 Memcached？",
+      "分层分得太细会不会变成过度设计？"
+    ]
+  },
+  "workflow": {
+    "router_rules": [
+      "先用 frontmatter `description` 路由：命中四层架构、依赖反转、数据访问层、微服务/技术选型、过度设计等真实场景才进入本技能。",
+      "命中后按下方工作流回答；本技能是架构指南，不是通用代码评审或调试入口。",
+      "对「纯代码质量、DDD、系统设计面试、单个 DTO 微观决策、缓存库选择、框架机制调试、画架构图、翻译/格式化」直接回答，不调用本技能。",
+      "尊重用户技术栈：用四层术语讲解，再映射到用户的真实框架（Express/Next.js/Go/Spring），不写死单一框架。",
+      "术语以「建议语气」给出：默认优先使用 Entities / Use Cases / Interface Adapters / Frameworks 四层术语；Service/Repository/Controller 仅作为实现模式映射，不作主层名；允许用户已有约定时沿用。",
+      "只读审计请求不修改任何文件。"
+    ],
+    "compact_workflow": [],
+    "gate_ladder": [],
+    "output_contract": [
+      "命中场景：诊断结论 + 四层映射 + 依赖规则说明 + 用户栈映射 + 最小代码示例 + 过度设计检查结论",
+      "未命中场景：直接回答，不套用本技能模板",
+      "不输出完整目录脚手架，除非用户明确要求；默认给出贴合的目录建议"
+    ]
+  },
+  "resources": {
+    "references": [
+      "references/clean-architecture.md",
+      "references/engineering-philosophy.md",
+      "references/musk-algorithm.md"
+    ],
+    "scripts": [
+      "scripts/output_eval.py"
+    ],
+    "evals": [
+      "evals/output-eval.json",
+      "evals/trigger_cases.json"
+    ],
+    "reports": [
+      "reports/.DS_Store",
+      "reports/assets/eval-report.png",
+      "reports/assets/eval-report.svg",
+      "reports/assets/four-layer-diagram.png",
+      "reports/assets/four-layer-diagram.svg",
+      "reports/assets/upgrade-infographic.png",
+      "reports/assets/upgrade-infographic.svg",
+      "reports/creation-handoff.md",
+      "reports/output-eval.json",
+      "reports/prior-art-research.md",
+      "reports/skill-ir.json",
+      "reports/trigger-eval.json",
+      "reports/upgrade-summary.md"
+    ]
+  },
+  "portability": {
+    "canonical_format": "agent-skills",
+    "adapter_targets": [
+      "fastagent",
+      "openai",
+      "claude",
+      "generic",
+      "agent-skills-compatible",
+      "vscode"
+    ],
+    "activation": {
+      "mode": "manual",
+      "paths": []
+    },
+    "execution": {
+      "context": "inline",
+      "shell": "none"
+    },
+    "trust": {
+      "source_tier": "local",
+      "remote_inline_execution": "forbid",
+      "remote_metadata_policy": "allow catalog metadata and read-only source review; forbid unreviewed execution",
+      "generated_public_claims": "evidence-bound"
+    },
+    "permissions": {
+      "network": "none required; read-only reference material is local",
+      "file_write": "none unless the user explicitly requests refactoring or scaffold generation",
+      "subprocess": "none by default",
+      "interactive": "avoid unless the user requests a scaffold or interactive diagnosis"
+    },
+    "degradation": {
+      "fastagent": "canonical-source",
+      "openai": "metadata-adapter",
+      "claude": "neutral-source-plus-adapter",
+      "generic": "neutral-source",
+      "agent-skills-compatible": "canonical-source",
+      "vscode": "neutral-source-plus-review-notes"
+    }
+  },
+  "gates": {
+    "scaffold": [
+      "SKILL.md frontmatter",
+      "README hook and natural trigger examples",
+      "clear exclusions"
+    ],
+    "production": [
+      "four-layer terminology and dependency rule in output contract",
+      "trigger_cases.json with should/should-not/near-neighbor boundaries",
+      "user-stack mapping guidance",
+      "anti-over-engineering check in workflow"
+    ],
+    "library": [
+      "reports/skill-ir.json",
+      "portability notes",
+      "trust boundary"
+    ],
+    "governed": [
+      "output contract",
+      "trust report or explicit missing evidence",
+      "rollback boundary",
+      "public claim guard",
+      "local, PR, and published release readiness checked by executable gates",
+      "manifest, Skill IR, trigger report, and release evidence remain consistent"
+    ]
+  },
+  "evidence_boundary": {
+    "generated_reports_are_evidence": true,
+    "planned_work_is_evidence": false,
+    "missing_external_or_human_evidence_label": "missing evidence",
+    "public_claim_policy": "claim only what local validation, install proof, human review, or provider-backed evidence actually supports"
+  }
+}

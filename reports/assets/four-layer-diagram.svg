@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="960" viewBox="0 0 960 960" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e11d48"/>
+    </marker>
+  </defs>
+
+  <text x="480" y="55" font-size="34" font-weight="700" fill="#111827" text-anchor="middle">Clean Architecture · 四层同心圆</text>
+  <text x="480" y="92" font-size="18" fill="#6b7280" text-anchor="middle">基于 Robert C. Martin《架构整洁之道》 · 依赖规则与 SOLID</text>
+
+  <g>
+    <!-- Frameworks & Drivers (outer) -->
+    <circle cx="460" cy="470" r="330" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3"/>
+    <text x="460" y="162" font-size="22" font-weight="700" fill="#475569" text-anchor="middle">Frameworks &amp; Drivers</text>
+    <text x="460" y="188" font-size="15" fill="#64748b" text-anchor="middle">框架与驱动</text>
+
+    <!-- Interface Adapters -->
+    <circle cx="460" cy="470" r="250" fill="#e0e7ff" stroke="#6366f1" stroke-width="3"/>
+    <text x="460" y="254" font-size="22" font-weight="700" fill="#4338ca" text-anchor="middle">Interface Adapters</text>
+    <text x="460" y="280" font-size="15" fill="#6d28d9" text-anchor="middle">接口适配器</text>
+
+    <!-- Use Cases -->
+    <circle cx="460" cy="470" r="170" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+    <text x="460" y="336" font-size="22" font-weight="700" fill="#1d4ed8" text-anchor="middle">Use Cases</text>
+    <text x="460" y="362" font-size="15" fill="#1e40af" text-anchor="middle">用例</text>
+
+    <!-- Entities (center) -->
+    <circle cx="460" cy="470" r="95" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+    <text x="460" y="462" font-size="26" font-weight="700" fill="#b45309" text-anchor="middle">Entities</text>
+    <text x="460" y="492" font-size="15" fill="#b45309" text-anchor="middle">业务实体</text>
+    <text x="460" y="514" font-size="15" fill="#b45309" text-anchor="middle">领域规则</text>
+
+    <!-- Framework examples in outer annulus -->
+    <text x="180" y="475" font-size="16" font-weight="600" fill="#475569" text-anchor="middle">Express</text>
+    <text x="163" y="520" font-size="16" font-weight="600" fill="#475569" text-anchor="middle">Next.js</text>
+    <text x="740" y="475" font-size="16" font-weight="600" fill="#475569" text-anchor="middle">Go</text>
+    <text x="757" y="520" font-size="16" font-weight="600" fill="#475569" text-anchor="middle">Spring</text>
+    <text x="300" y="736" font-size="16" font-weight="600" fill="#475569" text-anchor="middle">Stripe / PayPal</text>
+    <text x="620" y="736" font-size="16" font-weight="600" fill="#475569" text-anchor="middle">PostgreSQL / Redis / Kafka</text>
+
+    <!-- Interface Adapter examples -->
+    <text x="255" y="470" font-size="15" font-weight="600" fill="#4338ca" text-anchor="middle">Controller</text>
+    <text x="665" y="468" font-size="15" font-weight="600" fill="#4338ca" text-anchor="middle">Gateway</text>
+    <text x="667" y="506" font-size="15" font-weight="600" fill="#4338ca" text-anchor="middle">Repository</text>
+
+    <!-- Use Case examples -->
+    <text x="352" y="506" font-size="14" font-weight="600" fill="#1d4ed8" text-anchor="middle">下单用例</text>
+    <text x="568" y="506" font-size="14" font-weight="600" fill="#1d4ed8" text-anchor="middle">支付用例</text>
+
+    <!-- Dependency direction arrow (right side, into the rings) -->
+    <line x1="786" y1="470" x2="720" y2="470" stroke="#e11d48" stroke-width="4" marker-end="url(#arrow)"/>
+    <text x="753" y="450" font-size="15" font-weight="700" fill="#be123c" text-anchor="middle">依赖方向</text>
+    <text x="753" y="497" font-size="15" fill="#be123c" text-anchor="middle">外 → 内</text>
+  </g>
+
+  <rect x="235" y="820" width="450" height="92" rx="16" fill="#fdf2f8" stroke="#e11d48" stroke-width="2"/>
+  <text x="460" y="852" font-size="19" font-weight="700" fill="#be123c" text-anchor="middle">依赖规则：源码依赖只指向内层</text>
+  <text x="460" y="884" font-size="14" fill="#9f1239" text-anchor="middle">DIP · 抽象与实现分离，内层不依赖外层</text>
+</svg>

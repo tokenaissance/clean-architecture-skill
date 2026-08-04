@@ -1,0 +1,63 @@
+interface:
+  display_name: "Clean Architecture"
+  short_description: "Layer code, fix dependency direction, and avoid over-engineering with the four-layer model and Musk's five steps"
+  default_prompt: "Use $clean-architecture as the layered-architecture reference. First confirm the request is about architecture design, dependency direction, data-access layering, technology selection, or over-engineering; otherwise answer directly without invoking this skill. Diagnose before prescribing: ask about input scale, team size, concurrency, and change frequency. When the scenario matches, answer in four-layer terms (Entities / Use Cases / Interface Adapters / Frameworks), state the dependency rule with direction arrows, map the four layers onto the user's real stack (e.g. Express/Next.js/Go/Spring), and include a minimal labeled code example. Always finish with an anti-over-engineering check using Musk's five steps in order (question, delete, simplify, accelerate, automate). Use a suggested tone for terminology: prefer the four-layer terms but respect the user's existing conventions. Do not trigger on pure code quality, DDD, system-design interview questions, single-DTO micro decisions, cache-library choice, framework debugging, diagram drawing, translation, or formatting. Respect audit-only requests by reporting findings without editing files."
+  examples:
+    - "业务逻辑都堆在 controller 里，怎么分层重构？"
+    - "Order 实体直接依赖 Stripe SDK，这样设计有问题吗？"
+    - "5 个人用的工具要上微服务 + Kafka + Redis 吗？"
+    - "从 REST 迁到 GraphQL，数据访问代码要全部重写吗？"
+    - "接入多个第三方支付，怎么设计适配层方便切换？"
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "fastagent"
+    - "openai"
+    - "claude"
+    - "generic"
+    - "agent-skills-compatible"
+    - "vscode"
+  activation:
+    mode: "manual"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "none"
+  trust:
+    source_tier: "local"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow catalog metadata and read-only source review; forbid unreviewed execution"
+    generated_public_claims: "evidence-bound"
+  permissions:
+    network: "none required; read-only reference material is local"
+    file_write: "none unless the user explicitly requests refactoring or scaffold generation"
+    subprocess: "none by default"
+    interactive: "avoid unless the user requests a scaffold or interactive diagnosis"
+  degradation:
+    fastagent: "canonical-source"
+    openai: "metadata-adapter"
+    claude: "neutral-source-plus-adapter"
+    generic: "neutral-source"
+    agent-skills-compatible: "canonical-source"
+    vscode: "neutral-source-plus-review-notes"
+gates:
+  scaffold:
+    - "SKILL.md frontmatter"
+    - "README hook and natural trigger examples"
+    - "clear exclusions"
+  production:
+    - "four-layer terminology and dependency rule in output contract"
+    - "trigger_cases.json with should/should-not/near-neighbor boundaries"
+    - "user-stack mapping guidance"
+    - "anti-over-engineering check in workflow"
+  library:
+    - "reports/skill-ir.json"
+    - "portability notes"
+    - "trust boundary"
+  governed:
+    - "output contract"
+    - "trust report or explicit missing evidence"
+    - "rollback boundary"
+    - "public claim guard"
+    - "local, PR, and published release readiness checked by executable gates"
+    - "manifest, Skill IR, trigger report, and release evidence remain consistent"

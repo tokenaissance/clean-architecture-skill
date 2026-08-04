@@ -1,0 +1,233 @@
+{
+  "ok": true,
+  "evidence_kind": "behavior_specification",
+  "generated_at": "2026-08-05",
+  "contract_coverage": {
+    "pass": true,
+    "dimensions": [
+      {
+        "dimension": "four_layer_terms",
+        "label": "四层术语",
+        "pass": true,
+        "matched_terms": [
+          "Entities",
+          "Use Case",
+          "Interface Adapter",
+          "Frameworks"
+        ],
+        "missing_terms": []
+      },
+      {
+        "dimension": "dependency_rule",
+        "label": "依赖规则",
+        "pass": true,
+        "matched_terms": [
+          "依赖",
+          "方向",
+          "内层"
+        ],
+        "missing_terms": []
+      },
+      {
+        "dimension": "stack_mapping",
+        "label": "栈映射",
+        "pass": true,
+        "matched_terms": [
+          "映射",
+          "Express"
+        ],
+        "missing_terms": []
+      },
+      {
+        "dimension": "code_example",
+        "label": "代码示例",
+        "pass": true,
+        "matched_terms": [
+          "代码示例"
+        ],
+        "missing_terms": []
+      },
+      {
+        "dimension": "overengineering_check",
+        "label": "过度设计检查",
+        "pass": true,
+        "matched_terms": [
+          "五步",
+          "过度设计"
+        ],
+        "missing_terms": []
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "layering_refactor",
+      "title": "分层重构：业务逻辑堆在 controller",
+      "pass": true,
+      "dimensions": [
+        {
+          "dimension": "four_layer_terms",
+          "label": "四层术语",
+          "pass": true,
+          "matched_terms": [
+            "Entities",
+            "Use Case",
+            "Interface Adapter",
+            "Frameworks"
+          ],
+          "missing_terms": []
+        },
+        {
+          "dimension": "dependency_rule",
+          "label": "依赖规则",
+          "pass": true,
+          "matched_terms": [
+            "依赖",
+            "方向",
+            "内层"
+          ],
+          "missing_terms": []
+        },
+        {
+          "dimension": "stack_mapping",
+          "label": "栈映射",
+          "pass": true,
+          "matched_terms": [
+            "映射",
+            "Express"
+          ],
+          "missing_terms": []
+        },
+        {
+          "dimension": "code_example",
+          "label": "代码示例",
+          "pass": true,
+          "matched_terms": [
+            "```"
+          ],
+          "missing_terms": []
+        }
+      ]
+    },
+    {
+      "id": "dip_violation",
+      "title": "依赖反转：实体直接依赖外部 SDK",
+      "pass": true,
+      "dimensions": [
+        {
+          "dimension": "four_layer_terms",
+          "label": "四层术语",
+          "pass": true,
+          "matched_terms": [
+            "Entities",
+            "Use Case",
+            "Interface Adapter",
+            "Frameworks"
+          ],
+          "missing_terms": []
+        },
+        {
+          "dimension": "dependency_rule",
+          "label": "依赖规则",
+          "pass": true,
+          "matched_terms": [
+            "依赖",
+            "方向",
+            "内层"
+          ],
+          "missing_terms": []
+        },
+        {
+          "dimension": "stack_mapping",
+          "label": "栈映射",
+          "pass": true,
+          "matched_terms": [
+            "映射",
+            "Express"
+          ],
+          "missing_terms": []
+        },
+        {
+          "dimension": "code_example",
+          "label": "代码示例",
+          "pass": true,
+          "matched_terms": [
+            "```"
+          ],
+          "missing_terms": []
+        }
+      ]
+    },
+    {
+      "id": "overengineering_decision",
+      "title": "反过度设计：小团队要不要上微服务",
+      "pass": true,
+      "dimensions": [
+        {
+          "dimension": "overengineering_check",
+          "label": "过度设计检查",
+          "pass": true,
+          "matched_terms": [
+            "过度设计",
+            "五步",
+            "简化"
+          ],
+          "missing_terms": []
+        },
+        {
+          "dimension": "stack_mapping",
+          "label": "栈映射",
+          "pass": true,
+          "matched_terms": [
+            "映射",
+            "Express"
+          ],
+          "missing_terms": []
+        }
+      ]
+    },
+    {
+      "id": "repository_pattern",
+      "title": "数据访问层：换数据库要不要重写",
+      "pass": true,
+      "dimensions": [
+        {
+          "dimension": "dependency_rule",
+          "label": "依赖规则",
+          "pass": true,
+          "matched_terms": [
+            "依赖",
+            "方向",
+            "内层"
+          ],
+          "missing_terms": []
+        },
+        {
+          "dimension": "stack_mapping",
+          "label": "栈映射",
+          "pass": true,
+          "matched_terms": [
+            "映射",
+            "Express"
+          ],
+          "missing_terms": []
+        },
+        {
+          "dimension": "code_example",
+          "label": "代码示例",
+          "pass": true,
+          "matched_terms": [
+            "```"
+          ],
+          "missing_terms": []
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "scenario_total": 4,
+    "scenario_passed": 4,
+    "dimension_total": 13,
+    "dimension_passed": 13
+  }
+}

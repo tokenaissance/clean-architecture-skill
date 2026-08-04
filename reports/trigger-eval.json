@@ -1,0 +1,275 @@
+{
+  "ok": true,
+  "threshold": 0.34,
+  "description_concepts": [
+    "adapter",
+    "architecture",
+    "dataaccess",
+    "dependency",
+    "entity",
+    "overengineering",
+    "refactor",
+    "tech"
+  ],
+  "missing_description_concepts": [],
+  "summary": {
+    "total": 20,
+    "passed": 20,
+    "false_positive": 0,
+    "false_negative": 0,
+    "pass_rate": 1.0
+  },
+  "failures": [],
+  "results": {
+    "should_trigger": [
+      {
+        "prompt": "我的 Express 项目所有业务逻辑都写在 controller 里，数据库查询也直接调用，改一个功能要改好几个文件，怎么分层重构？",
+        "family": "layer_refactor",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.6,
+        "matched_concepts": [
+          "adapter",
+          "refactor",
+          "tech"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "Order 实体直接 import 了 Stripe SDK 处理支付，这样设计有什么问题？怎么改？",
+        "family": "dip_violation",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.4,
+        "matched_concepts": [
+          "adapter",
+          "entity"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "5 个人用的内部 CRUD 工具，同事建议微服务 + Kafka + Redis，你觉得有必要吗？",
+        "family": "over_engineering",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.4,
+        "matched_concepts": [
+          "overengineering",
+          "tech"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "我们的单体应用要拆微服务：用户、订单、支付各独立服务独立数据库，REST 通信，方案怎么样？",
+        "family": "microservice_decision",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.4,
+        "matched_concepts": [
+          "refactor",
+          "tech"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "要从 REST 迁移到 GraphQL，后端担心要重写很多代码，迁移成本大吗？",
+        "family": "adapter_migration",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.4,
+        "matched_concepts": [
+          "refactor",
+          "tech"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "要接入多个第三方：支付 Stripe/PayPal、物流、短信，怎么设计才能方便切换和扩展？",
+        "family": "vendor_adapter",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.4,
+        "matched_concepts": [
+          "adapter",
+          "dependency"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "现在用 MongoDB，DBA 建议换 PostgreSQL，开发团队担心要重写所有数据访问代码，真的要全部重写吗？",
+        "family": "repository_pattern",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.4,
+        "matched_concepts": [
+          "dataaccess",
+          "tech"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "User 这个实体直接依赖了数据库驱动，违反依赖规则吗？怎么解耦？",
+        "family": "dependency_rule",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.6,
+        "matched_concepts": [
+          "dependency",
+          "entity",
+          "tech"
+        ],
+        "negative_pattern": null
+      }
+    ],
+    "should_not_trigger": [
+      {
+        "prompt": "画一下我们系统的架构图，用 mermaid 语法画出来",
+        "family": "diagram_drawing",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.2,
+        "matched_concepts": [
+          "architecture"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "为什么我的依赖注入不生效，报 null 注入错误",
+        "family": "di_debugging",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.2,
+        "matched_concepts": [
+          "dependency"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "帮我 debug 这个登录接口的 500 错误",
+        "family": "debugging",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.2,
+        "matched_concepts": [
+          "adapter"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "这个 React 组件要不要拆成两个子组件？",
+        "family": "component_design",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.2,
+        "matched_concepts": [
+          "refactor"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "这个 SQL 查询为什么这么慢，怎么加索引优化？",
+        "family": "query_optimization",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.0,
+        "matched_concepts": [],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "帮我把这段代码格式化一下",
+        "family": "formatting",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.0,
+        "matched_concepts": [],
+        "negative_pattern": "格式化"
+      },
+      {
+        "prompt": "翻译一下这篇关于 clean architecture 的文章",
+        "family": "translation",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.2,
+        "matched_concepts": [
+          "architecture"
+        ],
+        "negative_pattern": "翻译一下"
+      },
+      {
+        "prompt": "帮我写个产品发布会的标题",
+        "family": "copywriting",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.0,
+        "matched_concepts": [],
+        "negative_pattern": null
+      }
+    ],
+    "near_neighbor": [
+      {
+        "prompt": "这个接口要不要加一个 DTO 类？",
+        "family": "dto_decision",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.2,
+        "matched_concepts": [
+          "adapter"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "这个 service 类的职责是不是太杂了？",
+        "family": "layer_boundary",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.2,
+        "matched_concepts": [
+          "adapter"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "缓存选型用 Redis 还是 Memcached？",
+        "family": "cache_choice",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.2,
+        "matched_concepts": [
+          "tech"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "分层分得太细会不会变成过度设计？",
+        "family": "meta_question",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.2,
+        "matched_concepts": [
+          "overengineering"
+        ],
+        "negative_pattern": null
+      }
+    ]
+  }
+}
