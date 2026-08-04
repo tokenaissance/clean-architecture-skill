@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1720" viewBox="0 0 1200 1720" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Arial, sans-serif">
+  <defs>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e3a8a"/>
+      <stop offset="1" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="footerGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d9488"/>
+      <stop offset="1" stop-color="#14b8a6"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="240" fill="url(#headerGrad)"/>
+  <text x="600" y="118" font-size="46" font-weight="700" fill="#ffffff" text-anchor="middle">clean-architecture 技能升级报告</text>
+  <text x="600" y="172" font-size="26" fill="rgba(255,255,255,0.92)" text-anchor="middle">v0 个人笔记级 → v1.1.0 公开 governed 发布包</text>
+  <rect x="410" y="196" width="380" height="40" rx="20" fill="rgba(255,255,255,0.16)"/>
+  <text x="600" y="223" font-size="18" fill="#ffffff" text-anchor="middle">npx skills add tokenaissance/clean-architecture-skill</text>
+
+  <text x="95" y="300" font-size="16" fill="#6b7280" text-anchor="middle">对比维度</text>
+  <rect x="170" y="280" width="450" height="70" rx="14" fill="#fbe9e7" stroke="#e5604a" stroke-width="2"/>
+  <text x="395" y="321" font-size="24" font-weight="700" fill="#c2410c" text-anchor="middle">旧 · v0（2026-03-10）</text>
+  <rect x="670" y="280" width="450" height="70" rx="14" fill="#e0f2ef" stroke="#0f9d7e" stroke-width="2"/>
+  <text x="895" y="321" font-size="24" font-weight="700" fill="#0f766e" text-anchor="middle">新 · v1.1.0（2026-08-05）</text>
+
+  <g>
+    <!-- Row 1 触发精度 -->
+    <rect x="0" y="380" width="1200" height="155" fill="#ffffff"/>
+    <text x="95" y="433" font-size="20" font-weight="700" fill="#111827" text-anchor="middle">触发精度</text>
+    <text x="395" y="438" font-size="30" font-weight="700" fill="#c2410c" text-anchor="middle">60%</text>
+    <text x="395" y="480" font-size="17" fill="#6b7280" text-anchor="middle">8/20 失败</text>
+    <text x="895" y="438" font-size="30" font-weight="700" fill="#0f766e" text-anchor="middle">✓ 100%</text>
+    <text x="895" y="480" font-size="17" fill="#6b7280" text-anchor="middle">20/20 · 0 误触发 / 0 漏触发</text>
+
+    <!-- Row 2 上下文预算 -->
+    <rect x="0" y="535" width="1200" height="155" fill="#f9fafb"/>
+    <text x="95" y="588" font-size="20" font-weight="700" fill="#111827" text-anchor="middle">上下文预算</text>
+    <text x="395" y="593" font-size="30" font-weight="700" fill="#c2410c" text-anchor="middle">16.5KB</text>
+    <text x="395" y="635" font-size="17" fill="#6b7280" text-anchor="middle">单体 SKILL.md</text>
+    <text x="895" y="593" font-size="30" font-weight="700" fill="#0f766e" text-anchor="middle">✓ 4.5KB</text>
+    <text x="895" y="635" font-size="17" fill="#6b7280" text-anchor="middle">≤ 14KB production 预算</text>
+
+    <!-- Row 3 结构 -->
+    <rect x="0" y="690" width="1200" height="155" fill="#ffffff"/>
+    <text x="95" y="743" font-size="20" font-weight="700" fill="#111827" text-anchor="middle">结构</text>
+    <text x="395" y="748" font-size="28" font-weight="700" fill="#c2410c" text-anchor="middle">无 manifest / README</text>
+    <text x="395" y="790" font-size="17" fill="#6b7280" text-anchor="middle">2 个非标 eval 文件</text>
+    <text x="895" y="748" font-size="28" font-weight="700" fill="#0f766e" text-anchor="middle">✓ 标准 governed 包</text>
+    <text x="895" y="790" font-size="17" fill="#6b7280" text-anchor="middle">manifest + interface + trigger_cases</text>
+
+    <!-- Row 4 技术栈 -->
+    <rect x="0" y="845" width="1200" height="155" fill="#f9fafb"/>
+    <text x="95" y="898" font-size="20" font-weight="700" fill="#111827" text-anchor="middle">技术栈</text>
+    <text x="395" y="903" font-size="28" font-weight="700" fill="#c2410c" text-anchor="middle">写死 Express / Stripe</text>
+    <text x="395" y="945" font-size="17" fill="#6b7280" text-anchor="middle">Sequelize 模板</text>
+    <text x="895" y="903" font-size="28" font-weight="700" fill="#0f766e" text-anchor="middle">✓ 框架无关</text>
+    <text x="895" y="945" font-size="17" fill="#6b7280" text-anchor="middle">Express / Next.js / Go / Spring 映射</text>
+
+    <!-- Row 5 术语协议 -->
+    <rect x="0" y="1000" width="1200" height="155" fill="#ffffff"/>
+    <text x="95" y="1053" font-size="20" font-weight="700" fill="#111827" text-anchor="middle">术语协议</text>
+    <text x="395" y="1058" font-size="28" font-weight="700" fill="#c2410c" text-anchor="middle">强制 MANDATORY</text>
+    <text x="395" y="1100" font-size="17" fill="#6b7280" text-anchor="middle">禁 Service / Repository</text>
+    <text x="895" y="1058" font-size="28" font-weight="700" fill="#0f766e" text-anchor="middle">✓ 建议语气</text>
+    <text x="895" y="1100" font-size="17" fill="#6b7280" text-anchor="middle">默认四层术语，尊重既有约定</text>
+
+    <!-- Row 6 反过度设计 -->
+    <rect x="0" y="1155" width="1200" height="155" fill="#f9fafb"/>
+    <text x="95" y="1208" font-size="20" font-weight="700" fill="#111827" text-anchor="middle">反过度设计</text>
+    <text x="395" y="1213" font-size="28" font-weight="700" fill="#c2410c" text-anchor="middle">无</text>
+    <text x="895" y="1213" font-size="28" font-weight="700" fill="#0f766e" text-anchor="middle">✓ 马斯克五步法</text>
+    <text x="895" y="1255" font-size="17" fill="#6b7280" text-anchor="middle">质疑 → 删除 → 简化 → 加速 → 自动化</text>
+
+    <!-- Row 7 评测 -->
+    <rect x="0" y="1310" width="1200" height="155" fill="#ffffff"/>
+    <text x="95" y="1363" font-size="20" font-weight="700" fill="#111827" text-anchor="middle">评测</text>
+    <text x="395" y="1368" font-size="28" font-weight="700" fill="#c2410c" text-anchor="middle">6 个面试 eval</text>
+    <text x="395" y="1410" font-size="17" fill="#6b7280" text-anchor="middle">稀释定位</text>
+    <text x="895" y="1368" font-size="26" font-weight="700" fill="#0f766e" text-anchor="middle">✓ trigger 20 例 + rubric</text>
+    <text x="895" y="1410" font-size="17" fill="#6b7280" text-anchor="middle">13 维 · 行为规范级证据</text>
+
+    <!-- Row 8 发布 -->
+    <rect x="0" y="1465" width="1200" height="155" fill="#f9fafb"/>
+    <text x="95" y="1518" font-size="20" font-weight="700" fill="#111827" text-anchor="middle">发布</text>
+    <text x="395" y="1523" font-size="28" font-weight="700" fill="#c2410c" text-anchor="middle">未发布</text>
+    <text x="395" y="1565" font-size="17" fill="#6b7280" text-anchor="middle">个人目录</text>
+    <text x="895" y="1523" font-size="28" font-weight="700" fill="#0f766e" text-anchor="middle">✓ v1.1.0 公开 Release</text>
+    <text x="895" y="1565" font-size="17" fill="#6b7280" text-anchor="middle">PR #2 merged · npx 一键安装</text>
+  </g>
+
+  <rect x="0" y="1620" width="1200" height="100" fill="url(#footerGrad)"/>
+  <text x="600" y="1678" font-size="26" font-weight="700" fill="#ffffff" text-anchor="middle">亮点速览：触发 20/20 · SKILL.md 16.5→4.5KB · 框架无关 · 马斯克五步闸门 · rubric 评测 · 公开 governed 发布</text>
+</svg>

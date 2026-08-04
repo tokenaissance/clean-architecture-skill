@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Arial, sans-serif">
+  <text x="600" y="70" font-size="34" font-weight="700" fill="#111827" text-anchor="middle">clean-architecture v1.1.0 · 评测报告</text>
+  <text x="600" y="108" font-size="18" fill="#6b7280" text-anchor="middle">证据类型：behavior_specification（行为规范级）</text>
+
+  <!-- Left card: Trigger eval -->
+  <rect x="50" y="150" width="530" height="600" rx="20" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+  <text x="315" y="208" font-size="24" font-weight="700" fill="#111827" text-anchor="middle">触发边界 Trigger Eval</text>
+  <text x="315" y="318" font-size="96" font-weight="700" fill="#1e4fd6" text-anchor="middle">20/20</text>
+  <text x="315" y="360" font-size="17" fill="#6b7280" text-anchor="middle">pass_rate 1.0 · threshold 0.34</text>
+
+  <g>
+    <text x="110" y="425" font-size="17" font-weight="700" fill="#111827" text-anchor="start">should-trigger</text>
+    <text x="520" y="425" font-size="18" font-weight="700" fill="#1e4fd6" text-anchor="end">8 / 8</text>
+    <rect x="110" y="440" width="410" height="16" rx="8" fill="#eef0f3"/>
+    <rect x="110" y="440" width="410" height="16" rx="8" fill="#1e4fd6"/>
+
+    <text x="110" y="505" font-size="17" font-weight="700" fill="#111827" text-anchor="start">should-not-trigger</text>
+    <text x="520" y="505" font-size="18" font-weight="700" fill="#0f9d7e" text-anchor="end">8 / 8</text>
+    <rect x="110" y="520" width="410" height="16" rx="8" fill="#eef0f3"/>
+    <rect x="110" y="520" width="410" height="16" rx="8" fill="#0f9d7e"/>
+
+    <text x="110" y="585" font-size="17" font-weight="700" fill="#111827" text-anchor="start">near-neighbor</text>
+    <text x="520" y="585" font-size="18" font-weight="700" fill="#f59e0b" text-anchor="end">4 / 4</text>
+    <rect x="110" y="600" width="410" height="16" rx="8" fill="#eef0f3"/>
+    <rect x="110" y="600" width="410" height="16" rx="8" fill="#f59e0b"/>
+  </g>
+
+  <rect x="120" y="650" width="150" height="52" rx="26" fill="#e0f2ef"/>
+  <text x="195" y="682" font-size="18" font-weight="700" fill="#0f766e" text-anchor="middle">0 误触发</text>
+  <rect x="360" y="650" width="150" height="52" rx="26" fill="#e0f2ef"/>
+  <text x="435" y="682" font-size="18" font-weight="700" fill="#0f766e" text-anchor="middle">0 漏触发</text>
+
+  <!-- Right card: Output eval -->
+  <rect x="620" y="150" width="530" height="600" rx="20" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+  <text x="885" y="208" font-size="24" font-weight="700" fill="#111827" text-anchor="middle">输出契约 Output Eval</text>
+  <text x="885" y="318" font-size="96" font-weight="700" fill="#0f9d7e" text-anchor="middle">13/13</text>
+  <text x="885" y="360" font-size="17" fill="#6b7280" text-anchor="middle">4 个场景 · 13 个维度全部通过</text>
+
+  <g>
+    <rect x="660" y="410" width="450" height="52" rx="12" fill="#f8fafc" stroke="#e5e7eb"/>
+    <circle cx="695" cy="436" r="12" fill="#0f9d7e"/>
+    <text x="695" y="442" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">✓</text>
+    <text x="725" y="442" font-size="17" font-weight="700" fill="#111827" text-anchor="start">分层重构 · layering_refactor</text>
+
+    <rect x="660" y="475" width="450" height="52" rx="12" fill="#f8fafc" stroke="#e5e7eb"/>
+    <circle cx="695" cy="501" r="12" fill="#0f9d7e"/>
+    <text x="695" y="507" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">✓</text>
+    <text x="725" y="507" font-size="17" font-weight="700" fill="#111827" text-anchor="start">依赖反转 DIP · dip_violation</text>
+
+    <rect x="660" y="540" width="450" height="52" rx="12" fill="#f8fafc" stroke="#e5e7eb"/>
+    <circle cx="695" cy="566" r="12" fill="#0f9d7e"/>
+    <text x="695" y="572" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">✓</text>
+    <text x="725" y="572" font-size="17" font-weight="700" fill="#111827" text-anchor="start">反过度设计 · overengineering</text>
+
+    <rect x="660" y="605" width="450" height="52" rx="12" fill="#f8fafc" stroke="#e5e7eb"/>
+    <circle cx="695" cy="631" r="12" fill="#0f9d7e"/>
+    <text x="695" y="637" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">✓</text>
+    <text x="725" y="637" font-size="17" font-weight="700" fill="#111827" text-anchor="start">数据访问层 · repository_pattern</text>
+  </g>
+
+  <rect x="660" y="680" width="450" height="56" rx="14" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="885" y="714" font-size="18" font-weight="700" fill="#1d4ed8" text-anchor="middle">evidence_kind: behavior_specification</text>
+
+  <text x="600" y="778" font-size="18" fill="#6b7280" text-anchor="middle">触发 20/20 · 输出 13/13 · 单元测试 5/5 · 包结构 0 问题</text>
+</svg>

@@ -1,0 +1,79 @@
+{
+  "name": "clean-architecture",
+  "version": "1.1.1",
+  "owner": "Tokenaissance",
+  "updated_at": "2026-08-05",
+  "status": "active",
+  "maturity_tier": "governed",
+  "lifecycle_stage": "library",
+  "context_budget_tier": "production",
+  "review_cadence": "quarterly",
+  "upstream_inspiration": "wondelai/skills:clean-architecture; affaan-m/everything-claude-code; giuseppe-trisciuoglio/developer-kit; pproenca/dot-skills",
+  "upstream_sync": {
+    "reviewed_at": "2026-08-05",
+    "policy": "semantic adoption of Robert C. Martin Clean Architecture and Musk's five-step method; prior-art candidates compared across skills.sh and SkillsMP"
+  },
+  "intent": {
+    "job_to_be_done": "Answer layered-architecture, dependency-direction, technology-selection, and over-engineering questions with a four-layer model, dependency rule, user-stack mapping, and an anti-over-engineering check.",
+    "target_users": [
+      "developers refactoring monoliths or layered code",
+      "teams evaluating microservices / Kafka / Redis / caching",
+      "engineers migrating between data stores or API styles",
+      "reviewers judging dependency direction and adapter boundaries"
+    ],
+    "inputs": [
+      "code snippets with suspected layering or dependency violations",
+      "technology-selection or migration questions",
+      "architecture design proposals",
+      "requirements with scale/team/change-frequency context"
+    ],
+    "outputs": [
+      "diagnosis and four-layer mapping",
+      "dependency-rule explanation with direction arrows",
+      "framework-to-layer mapping for the user's stack",
+      "minimal code example with layer labels",
+      "anti-over-engineering verdict via Musk's five steps"
+    ],
+    "exclusions": [
+      "pure code quality reviews",
+      "DDD or system-design interview questions",
+      "single-DTO micro decisions",
+      "cache-library choice between Redis and Memcached",
+      "framework mechanism debugging and SQL tuning",
+      "diagram drawing, translation, formatting, copywriting"
+    ]
+  },
+  "defaults": {
+    "copyright": "Copyright (c) 2026 Tokenaissance",
+    "attribution": "Inspired by Robert C. Martin's Clean Architecture and the upstream repositories listed in upstream_inspiration"
+  },
+  "target_platforms": [
+    "fastagent",
+    "openai",
+    "claude",
+    "generic",
+    "agent-skills-compatible",
+    "vscode"
+  ],
+  "release_gates": [
+    "validate_skill",
+    "version_report_consistency",
+    "context_budget_validation",
+    "export_skill_ir",
+    "trigger_eval",
+    "output_eval",
+    "readme_product_page",
+    "install_verification",
+    "release_readiness_audit",
+    "remote_version_check",
+    "secret_scan",
+    "evidence_bound_public_claims",
+    "mit_license_preparation",
+    "feature_branch_only_publication",
+    "pull_request_review_and_check_gate",
+    "released_version_immutability",
+    "github_release_creation",
+    "npx_discovery_and_clean_install",
+    "non_destructive_local_sync"
+  ]
+}

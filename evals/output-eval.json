@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "evidence_kind": "behavior_specification",
+  "contract": {
+    "four_layer_terms": {
+      "label": "四层术语",
+      "coverage_terms": ["Entities", "Use Case", "Interface Adapter", "Frameworks"],
+      "required_terms": ["Entities", "Use Case", "Interface Adapter", "Frameworks"],
+      "description": "答案使用四层术语解释架构"
+    },
+    "dependency_rule": {
+      "label": "依赖规则",
+      "coverage_terms": ["依赖", "方向", "内层"],
+      "required_terms": ["依赖", "方向", "内层"],
+      "description": "答案说明源码依赖只指向内层并给出方向"
+    },
+    "stack_mapping": {
+      "label": "栈映射",
+      "coverage_terms": ["映射", "Express"],
+      "required_terms": ["映射", "Express"],
+      "description": "答案把四层映射到用户的真实技术栈"
+    },
+    "code_example": {
+      "label": "代码示例",
+      "coverage_terms": ["代码示例"],
+      "required_terms": ["```"],
+      "description": "答案包含带层标签的最小代码示例"
+    },
+    "overengineering_check": {
+      "label": "过度设计检查",
+      "coverage_terms": ["五步", "过度设计"],
+      "required_terms": ["过度设计", "五步", "简化"],
+      "description": "答案包含反过度设计检查（马斯克五步法）"
+    }
+  },
+  "scenarios": [
+    {
+      "id": "layering_refactor",
+      "title": "分层重构：业务逻辑堆在 controller",
+      "user_query": "我的 Express 项目所有业务逻辑都写在 controller 里，数据库查询也直接调用，改一个功能要改好几个文件，怎么分层重构？",
+      "dimensions": ["four_layer_terms", "dependency_rule", "stack_mapping", "code_example"],
+      "reference_answer": "问题根源是业务逻辑、数据访问和 HTTP 绑定全部堆在 Controller，违反依赖规则。用四层模型重构：Entities（订单、用户等核心业务对象）在最内层，不依赖任何框架；Use Cases 编排业务规则；Interface Adapters（Controller）负责 HTTP 与用例之间的格式转换；Frameworks（Express 路由、数据库驱动）在最外层。依赖方向必须只指向内层：Controller → Use Case → Entity，数据库实现依赖 Use Case 定义的接口，而不是反向。映射到你的 Express 项目：domain/ 放 Entities，application/use-cases/ 放 Use Case，adapters/controllers/ 放 Controller，infrastructure/repositories/ 放数据库实现。代码示例：\n```js\nclass CreateOrderUseCase {\n  constructor(orderRepository) { this.orderRepository = orderRepository; }\n  async execute(input) { return this.orderRepository.save(new Order(input)); }\n}\n```\n不要一次引入五层抽象：先按变化原因分组，未证实的变化轴保持简单，必要时再补边界。"
+    },
+    {
+      "id": "dip_violation",
+      "title": "依赖反转：实体直接依赖外部 SDK",
+      "user_query": "Order 实体直接 import 了 Stripe SDK 处理支付，这样设计有什么问题？怎么改？",
+      "dimensions": ["four_layer_terms", "dependency_rule", "stack_mapping", "code_example"],
+      "reference_answer": "这是典型的依赖反转（DIP）问题：Order 作为 Entities 层直接依赖 Stripe SDK，依赖方向从内层指向外层，违反依赖规则。修复方式：在 Use Cases 层定义 IPaymentGateway 接口（抽象），Order 只依赖该接口；StripePaymentGateway 在 Frameworks 层实现它。控制流从 Order 流向 Stripe，而源码依赖方向相反——这正是依赖反转。映射到你的技术栈（例如 Express/TypeScript）：application/interfaces/IPaymentGateway.ts 定义接口，infrastructure/payment/StripePaymentGateway.ts 放实现，Use Case 通过构造函数注入接口。代码示例：\n```ts\ninterface IPaymentGateway { charge(amount: number): Promise<void>; }\nclass StripePaymentGateway implements IPaymentGateway { async charge(a: number) { /* Stripe SDK */ } }\n```\n以后换成 PayPal 只需新增一个实现，Entities 层完全不动。四层 Entities / Use Cases / Interface Adapters / Frameworks 的边界就此守住。"
+    },
+    {
+      "id": "overengineering_decision",
+      "title": "反过度设计：小团队要不要上微服务",
+      "user_query": "5 个人用的内部 CRUD 工具，同事建议微服务 + Kafka + Redis，你觉得有必要吗？",
+      "dimensions": ["overengineering_check", "stack_mapping"],
+      "reference_answer": "先质疑需求再上方案，这正是马斯克五步法要防的过度设计。5 人内部 CRUD 工具没有独立部署、高并发或消息积压的实际问题，微服务 + Kafka + Redis 都是未证实的变化轴。按五步检查：1) 质疑需求——为什么需要微服务？现在有消息积压吗？2) 删除——删掉不需要的分布式部件；3) 简化——单体 + PostgreSQL + 简单分层足够；4) 加速——用成熟工具快速交付；5) 自动化——流程稳定后再写 CI/CD。映射到你的场景：单体 Express + PostgreSQL 就够，多部署一个微服务的运维成本会超过收益。结论：保持单体，等技术信号出现再拆分。"
+    },
+    {
+      "id": "repository_pattern",
+      "title": "数据访问层：换数据库要不要重写",
+      "user_query": "现在用 MongoDB，DBA 建议换 PostgreSQL，开发团队担心要重写所有数据访问代码，真的要全部重写吗？",
+      "dimensions": ["dependency_rule", "stack_mapping", "code_example"],
+      "reference_answer": "不必全部重写，前提是数据访问代码通过接口隔离。依赖规则要求业务逻辑只依赖 repository 接口（抽象），MongoDB 与 PostgreSQL 的实现分别实现同一接口，切换时只替换实现，业务层不动。映射到你的 Express 项目：application/interfaces/IUserRepository 定义接口，infrastructure/repositories/MongoUserRepository 与 PostgresUserRepository 提供实现，依赖方向从业务层指向接口（内层）。代码示例：\n```ts\ninterface IUserRepository { findById(id: string): Promise<User>; }\nclass PostgresUserRepository implements IUserRepository { /* PostgreSQL SQL */ }\n```\n真正需要重写的范围只有适配层，业务逻辑与 Use Case 保持不变。"
+    }
+  ]
+}
