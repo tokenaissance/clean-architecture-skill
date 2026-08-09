@@ -20,14 +20,17 @@ explain the dependency direction, and tell me whether microservices are over-eng
 
 It handles: **layering refactoring → dependency inversion (DIP) → data access layer (repository) → technology selection & migration → anti-over-engineering checks**.
 
-**v1.1.0 local candidate verified:** 5/5 unit tests, 20/20 trigger-boundary cases (8 should / 8 should-not / 4 near-neighbor), 4 rubric output scenarios all passing, 0 package-structure issues. Publishing evidence follows the [Releases](https://github.com/tokenaissance/clean-architecture-skill/releases) page.
+**v1.2.0** adds GEB fractal documentation discipline, self-bootstrapping L3 headers on all references, and framework-agnostic violation detection. See [Releases](https://github.com/tokenaissance/clean-architecture-skill/releases) for evidence.
 
 ## Why worth using
 
 - **Precise trigger boundary**: the description is narrowed and carries real technology terms (microservices / Kafka / Redis / caching / MongoDB→PostgreSQL / REST→GraphQL / Stripe / PayPal), passing trigger eval 20/20 with zero false positives and zero missed triggers.
 - **Stack-agnostic**: no more hardcoded Express/Sequelize/Stripe templates; the four-layer terms are mapped onto the user's actual framework.
 - **Built-in anti-over-engineering gate**: any "adopt the complex solution" advice first runs Musk's five steps (question → delete → simplify → accelerate → automate).
-- **Lightweight output**: production-grade context budget (SKILL.md 4.5KB, far below the 14KB ceiling); judgment plus a minimal example, never a long template dump.
+- **Architecture decisions that survive**: GEB fractal documentation discipline (v1.2.0). Major architecture decisions come with L2/L3 documentation skeletons. The L3 `[INPUT]` field catches dependency-rule violations before tests do — an HTTP request object in a Use Case's INPUT is visible at the file header, not buried in imports.
+- **Framework-agnostic violation patterns** (v1.2.0): the violation table detects the pattern ("ORM driver in Entity"), not the specific framework. Works for Node, Go, Spring, or any stack.
+- **Self-bootstrapping** (v1.2.0): all four reference files carry their own L3 `[INPUT]/[OUTPUT]/[POS]` headers. The skill that teaches documentation discipline follows it first.
+- **Lightweight output**: production-grade context budget (SKILL.md ~5KB, far below the 14KB ceiling); judgment plus a minimal example, never a long template dump. Output boundaries are quantified: directory suggestions ≤5 dirs with no file names.
 
 ## Natural-language examples
 
@@ -82,7 +85,7 @@ clean-architecture/
 ├── LICENSE                     # MIT
 ├── manifest.json               # version, author, platforms, and release gates
 ├── agents/interface.yaml       # cross-agent interface
-├── references/                 # clean-architecture / musk-algorithm / engineering-philosophy
+├── references/                 # clean-architecture / musk-algorithm / engineering-philosophy / geb-fractal-docs
 ├── scripts/output_eval.py      # rubric output eval
 ├── evals/                      # trigger_cases.json + output-eval.json
 └── reports/                    # Skill IR, trigger-eval, output-eval, prior-art, handoff, upgrade-summary
@@ -117,6 +120,7 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 - [`giuseppe-trisciuoglio/developer-kit`](https://github.com/giuseppe-trisciuoglio/developer-kit): clean-architecture candidate reference.
 - [`pproenca/dot-skills`](https://github.com/pproenca/dot-skills): clean-architecture candidate reference.
 - **Robert C. Martin (Uncle Bob) *Clean Architecture***: the original source of the four-layer concentric circles, dependency rule, and SOLID; this skill's references/ is rewritten from his method.
+- **GEB fractal documentation protocol** by @chunxiang: the code-document isomorphism and three-layer fractal structure (L1/L2/L3) that powers this skill's documentation discipline (v1.2.0).
 
 Upstream ideas are adopted semantically with attribution, not mirrored wholesale; search popularity is never passed off as quality. See `reports/prior-art-research.md`.
 

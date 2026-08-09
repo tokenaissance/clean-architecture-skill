@@ -18,14 +18,17 @@ explain the dependency direction, and tell me whether microservices are over-eng
 
 它处理：**分层重构 → 依赖反转（DIP）→ 数据访问层（repository）→ 技术选型与迁移 → 反过度设计检查**。
 
-**v1.1.0 本地候选已验证：** 5/5 单元测试、20/20 触发边界用例（含 8 个 should / 8 个 should-not / 4 个 near-neighbor）、4 个 rubric 输出场景全部通过、0 包结构问题。发布证据见 [Releases](https://github.com/tokenaissance/clean-architecture-skill/releases) 页面。
+**v1.2.0** 新增 GEB 分形文档纪律、reference 文件 L3 头部自举、框架无关的违规检测模式。发布证据见 [Releases](https://github.com/tokenaissance/clean-architecture-skill/releases)。
 
 ## 为什么值得用
 
 - **触发边界精确**：description 收窄并写入真实技术词（微服务/Kafka/Redis/缓存/MongoDB→PostgreSQL/REST→GraphQL/Stripe/PayPal），trigger eval 20/20 通过，误触发与漏触发均为 0。
 - **技术栈无关**：不再写死 Express/Sequelize/Stripe，而是把四层术语映射到用户的实际框架。
 - **自带反过度设计闸门**：任何「上复杂方案」的建议都会先跑马斯克五步法（质疑→删除→简化→加速→自动化）。
-- **轻量输出**：context budget 为 production 级（SKILL.md 4.5KB，远低于 14KB 上限），只给判断与最小示例，不给大段模板。
+- **架构决策可留存**（v1.2.0）：GEB 分形文档纪律。重大架构决策附带 L2/L3 文档骨架。L3 `[INPUT]` 字段比测试更早暴露依赖方向违规——Use Case 的 INPUT 里出现 HTTP 请求对象，不看 import，头部第一行就暴露了。
+- **框架无关的违规检测**（v1.2.0）：违规表检测的是模式（"ORM 驱动在 Entity 里"），不是具体框架。Node、Go、Spring 任意技术栈通用。
+- **自举**（v1.2.0）：4 个 reference 文件全部携带 L3 `[INPUT]/[OUTPUT]/[POS]` 头部。讲文档纪律的 skill 自己先遵守纪律。
+- **轻量输出**：context budget 为 production 级（SKILL.md ~5KB，远低于 14KB 上限），只给判断与最小示例，不给大段模板。输出边界已量化：目录建议 ≤5 个目录且不含具体文件名。
 
 ## 你可以直接这样说
 
@@ -80,7 +83,7 @@ clean-architecture/
 ├── LICENSE                     # MIT
 ├── manifest.json               # 版本、作者、平台与发布门禁
 ├── agents/interface.yaml       # 跨 Agent 接口
-├── references/                 # clean-architecture / musk-algorithm / engineering-philosophy
+├── references/                 # clean-architecture / musk-algorithm / engineering-philosophy / geb-fractal-docs
 ├── scripts/output_eval.py      # rubric 输出评测
 ├── evals/                      # trigger_cases.json + output-eval.json
 └── reports/                    # Skill IR、trigger-eval、output-eval、prior-art、handoff、upgrade-summary
@@ -115,6 +118,7 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 - [`giuseppe-trisciuoglio/developer-kit`](https://github.com/giuseppe-trisciuoglio/developer-kit)：clean-architecture 候选参考。
 - [`pproenca/dot-skills`](https://github.com/pproenca/dot-skills)：clean-architecture 候选参考。
 - **Robert C. Martin（Uncle Bob）《架构整洁之道》**：四层同心圆、依赖规则与 SOLID 的原始来源；本技能 references/ 基于其方法重写。
+- **GEB 分形文档协议** by @chunxiang：代码-文档同构与三层分形结构（L1/L2/L3），为本技能 v1.2.0 的文档纪律提供理论基础。
 
 Upstream ideas are adopted semantically with attribution, not mirrored wholesale; search popularity is never passed off as quality. 详见 `reports/prior-art-research.md`。
 

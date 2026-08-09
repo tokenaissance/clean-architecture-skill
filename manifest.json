@@ -1,8 +1,8 @@
 {
   "name": "clean-architecture",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "owner": "Tokenaissance",
-  "updated_at": "2026-08-05",
+  "updated_at": "2026-08-09",
   "status": "active",
   "maturity_tier": "governed",
   "lifecycle_stage": "library",
@@ -14,7 +14,7 @@
     "policy": "semantic adoption of Robert C. Martin Clean Architecture and Musk's five-step method; prior-art candidates compared across skills.sh and SkillsMP"
   },
   "intent": {
-    "job_to_be_done": "Answer layered-architecture, dependency-direction, technology-selection, and over-engineering questions with a four-layer model, dependency rule, user-stack mapping, and an anti-over-engineering check.",
+    "job_to_be_done": "Answer layered-architecture, dependency-direction, technology-selection, and over-engineering questions with a four-layer model, dependency rule, user-stack mapping, anti-over-engineering check, and GEB fractal documentation discipline so architecture decisions persist in code.",
     "target_users": [
       "developers refactoring monoliths or layered code",
       "teams evaluating microservices / Kafka / Redis / caching",
@@ -32,7 +32,9 @@
       "dependency-rule explanation with direction arrows",
       "framework-to-layer mapping for the user's stack",
       "minimal code example with layer labels",
-      "anti-over-engineering verdict via Musk's five steps"
+      "anti-over-engineering verdict via Musk's five steps",
+      "L2/L3 documentation skeletons for major architecture decisions (GEB fractal discipline)",
+      "framework-agnostic dependency-violation detection via L3 INPUT audit"
     ],
     "exclusions": [
       "pure code quality reviews",

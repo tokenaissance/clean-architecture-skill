@@ -1,6 +1,15 @@
-# Creation Handoff — clean-architecture v1.1.1
+# Creation Handoff — clean-architecture v1.2.0
 
 > 交付简报：本技能如何从个人级技能（2026-03-10，16.5KB 单体 SKILL.md）重建为公开 governed 发布包。
+
+## v1.2.0 更新（2026-08-09）
+
+- **GEB 分形文档纪律**：新增 `references/geb-fractal-docs.md`（源自 @chunxiang 的 GEB 分形文档协议），将代码-文档同构引入整洁架构工作流。Workflow 新增 step 5「文档同构（按需）」，Output Contract 明确重大架构决策附带 L2/L3 文档骨架。
+- **自举 L3 头部**：4 个 reference 文件全部添加 `[INPUT]/[OUTPUT]/[POS]/[PROTOCOL]` 头部——教文档纪律的技能自己先遵守。
+- **内部架构优化**：Workflow step 2 从引用具体文件路径改为引用概念名（DIP fix），Reference Map 成为唯一路径注册点（OCP fix）。Output Contract 量化边界（≤5 目录/不含文件 = 建议，>5 目录/含文件 = 脚手架）。
+- **框架无关违规检测**：geb-fractal-docs.md 违规表从 Node.js 生态特例改为模式层面检测，附带多框架等价物脚注。
+- **中英双语 README**：英文 README.md + 中文 docs/README.zh-CN.md 同步更新 v1.2.0 能力描述。
+- **版本号**：manifest.json、SKILL.md metadata 由 `1.1.1` 升至 `1.2.0`。
 
 ## v1.1.1 更新（2026-08-05）
 
