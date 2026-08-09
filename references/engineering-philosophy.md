@@ -1,193 +1,193 @@
 /**
- * [INPUT]: 依赖 references/clean-architecture.md 的 SOLID 与依赖规则作为辩证对象
- * [OUTPUT]: 唯物辩证法六论（对立统一/量变质变/否定之否定/经济基础与上层建筑/实践检验/主要矛盾）在软件工程中的应用
- * [POS]: references/ 的哲学思辨层，为架构决策提供辩证思维框架，是具体原则的元层次补充
- * [PROTOCOL]: 变更时更新此头部，然后检查 SKILL.md Reference Map 描述是否仍然准确
+ * [INPUT]: Depends on references/clean-architecture.md's SOLID principles and Dependency Rule as dialectical subjects
+ * [OUTPUT]: Six dialectical theses (unity of opposites / quantitative-to-qualitative change / negation of negation / base determines superstructure / practice as truth criterion / primary vs. secondary contradictions) applied to software engineering
+ * [POS]: references/' philosophical-dialectical layer — provides a dialectical thinking framework for architecture decisions. Serves as a meta-level complement to the concrete principles in clean-architecture.md
+ * [PROTOCOL]: On change, update this header, then verify SKILL.md Reference Map description remains accurate
  */
 
-# 马克思工程辩证法 — 唯物辩证法在软件工程中的应用
+# Engineering Dialectics — Materialist Dialectics in Software Engineering
 
-> 核心思想：软件系统是运动着的矛盾统一体。架构决策不是消除矛盾，而是在矛盾的对立面之间找到当前阶段的最优平衡点。
-
----
-
-## 目录
-
-1. [对立统一：核心矛盾的驾驭](#1-对立统一核心矛盾的驾驭)
-2. [量变到质变：技术债务与重构的辩证法](#2-量变到质变技术债务与重构的辩证法)
-3. [否定之否定：架构演进的螺旋上升](#3-否定之否定架构演进的螺旋上升)
-4. [经济基础与上层建筑：依赖结构决定一切](#4-经济基础与上层建筑依赖结构决定一切)
-5. [实践是检验真理的唯一标准](#5-实践是检验真理的唯一标准)
-6. [主要矛盾与次要矛盾：抓住关键问题](#6-主要矛盾与次要矛盾抓住关键问题)
+> Core insight: A software system is a unity of contradictions in motion. Architecture decisions are not about eliminating contradictions — they are about finding the optimal equilibrium point between opposing forces for the current stage.
 
 ---
 
-## 1. 对立统一：核心矛盾的驾驭
+## Table of Contents
 
-软件工程中的核心矛盾不是需要消除的"问题"，而是需要驾驭的"力量"��任何一端走到极端都是灾难。
-
-### 灵活性 vs 简单性
-
-- 过度灵活（"万一以后需要呢？"）导致复杂性爆炸，每个操作都要经过五层抽象
-- 过度简单（硬编码、快速修补）导致系统僵化，一点变化就要推倒重来
-- **驾驭策略**：在已证实的变化轴上投资灵活性（设边界），在未证实的地方保持简单。变化轴的"证实"来自历史——同一个位置被修改过三次以上，就是变化轴
-
-### 策略 vs 细节
-
-- 业务规则是系统的本质（"赚钱的逻辑"），技术实现是现象（"用什么框架"）
-- 混淆两者的后果：业务逻辑被数据库 schema 绑架、被 HTTP 协议污染、被框架注解入侵
-- **驾驭策略**：依赖方向永远从细节指向策略，从不反向。用接口隔离，让细节成为策略的"插件"
-
-### 内聚 vs 耦合
-
-- 把不相关的代码放在一起（低内聚），修改一处影响整个模块
-- 把相关的代码分散开来（高耦合），一个功能修改需要改十个文件
-- **驾驭策略**：按变化原因分组——因同一原因在同一时间变化的代码应该在一起（CCP），不因同一原因变化的代码必须分开（SRP）
-
-### 当前需求 vs 未来扩展
-
-- 过度设计（为未来三年的需求建架构）浪费当下的人力和复杂度预算
-- 设计不足（只满足今天的需求）在明天付出指数级技术债
-- **驾驭策略**：在变化已证实的轴上投资边界，在未证实的轴上保持简单。随时准备在拐点出手
-
-### 个体 vs 整体
-
-- 每个组件的局部最优不等于系统全局最优
-- 某个模块为了"自身方便"反向依赖高层策略，破坏了整个系统的依赖结构
-- **驾驭策略**：全局依赖方向优先于局部方便。任何局部优化都不能违反依赖规则
+1. [Unity of Opposites: Navigating Core Contradictions](#1-unity-of-opposites-navigating-core-contradictions)
+2. [Quantitative to Qualitative Change: Technical Debt and Refactoring Dialectics](#2-quantitative-to-qualitative-change-technical-debt-and-refactoring-dialectics)
+3. [Negation of Negation: Architecture Evolution as Spiral Ascent](#3-negation-of-negation-architecture-evolution-as-spiral-ascent)
+4. [Base Determines Superstructure: Dependency Structure Governs Everything](#4-base-determines-superstructure-dependency-structure-governs-everything)
+5. [Practice Is the Sole Criterion of Truth](#5-practice-is-the-sole-criterion-of-truth)
+6. [Primary vs. Secondary Contradictions: Seizing the Key Problem](#6-primary-vs-secondary-contradictions-seizing-the-key-problem)
 
 ---
 
-## 2. 量变到质变：技术债务与重构的辩证法
+## 1. Unity of Opposites: Navigating Core Contradictions
 
-### 正向量变：债务积累的临界点
+The core contradictions in software engineering are not "problems" to eliminate — they are forces to harness. Taking either pole to its extreme is disaster.
 
-技术债务的危害不是线性的。100 个小的架构妥协不会产生 100 个小问题——它们会在某个临界点突然导致：
+### Flexibility vs. Simplicity
 
-- 新功能开发时间从天变成周
-- 每次修改都引入新的 bug
-- 团队士气崩塌，最好的工程师离开
-- 整个系统进入"只能重写"的状态
+- Over-flexibility ("what if we need it later?") → complexity explosion: every operation traverses five abstraction layers
+- Over-simplicity (hardcoding, quick patches) → system rigidity: one change requires a total rewrite
+- **Navigation strategy**: Invest flexibility on proven variation axes (establish boundaries via DIP); keep it simple on unproven axes (YAGNI). A variation axis is "proven" by history — when the same location has been modified three or more times.
 
-识别临界点的信号：
-- 新成员上手时间显著增长
-- "害怕修改"的代码区域越来越多
-- 测试覆盖率无法提高（因为代码不可测试）
-- 构建和部署时间持续增长
+### Policy vs. Detail
 
-### 逆向量变：重构的积累效应
+- Business rules are the system's essence ("the money-making logic"); technical implementation is phenomena ("which framework")
+- Consequence of conflating the two: business logic enslaved by database schemas, contaminated by HTTP protocols, invaded by framework annotations
+- **Navigation strategy**: Dependency direction always points from detail to policy, never the reverse (Dependency Rule). Isolate with interfaces (Ports & Adapters); make detail a plugin to policy.
 
-持续的小改进（重构）也会在某个时刻产生质的飞跃：
+### Cohesion vs. Coupling
 
-- 系统突然变得"容易理解"——新人可以快速上手
-- 修改变得"安全"——影响范围可预测
-- 添加新功能变得"自然"——架构引导你做正确的事
+- Putting unrelated code together (low cohesion) → one change impacts the entire module
+- Scattering related code apart (high coupling) → one feature change touches ten files
+- **Navigation strategy**: Group by reason for change — code that changes for the same reason at the same time belongs together (CCP); code that changes for different reasons MUST be separated (SRP).
 
-重构的辩证法：不是"花一个月重构"，而是"每次修改都留下比来时更干净的代码"（童子军法则）。量变到质变的过程需要纪律和耐心。
+### Present Needs vs. Future Extensibility
 
----
+- Over-engineering (building architecture for three years of hypothetical requirements) wastes current labor and complexity budget
+- Under-engineering (satisfying only today's requirements) incurs exponential technical debt tomorrow
+- **Navigation strategy**: Invest boundaries on proven variation axes; keep it simple on unproven axes. Be ready to strike at the inflection point (OCP: open for extension, closed for modification).
 
-## 3. 否定之否定：架构演进的螺旋上升
+### Individual vs. Whole
 
-软件架构不是一步到位的，而是螺旋上升的：
-
-1. **正题**：快速原型（简单但脆弱）
-2. **反题**：过度工程（灵活但复杂）
-3. **合题**：恰到好处的架构（在需要的地方灵活，在其他地方简单）
-
-每一次"否定"不是完全推翻前一阶段，而是**扬弃**——保留合理部分，否定不合理部分：
-
-- 从单体到微服务不是否定"代码在一起"，而是否定"必须一起部署"
-- 从 ORM 到手写 SQL 不是否定"数据映射"，而是否定"框架替你思考"
-- 从继承到组合不是否定"代码复用"，而是否定"通过继承层次复用"
-
-### 历史进程中的否定之否定
-
-- 集中式 → 客户端/服务器 → Web（集中式回归） → 微服务（分布式回归） → 服务网格（集中管控回归）
-- 每一次"回归"都不是简单重复，而是在更高层次上的回归
+- Local optimum for each component ≠ global system optimum
+- A module "for its own convenience" reverses its dependency on high-level policy, destroying the entire system's dependency structure
+- **Navigation strategy**: Global dependency direction takes precedence over local convenience. No local optimization may violate the Dependency Rule.
 
 ---
 
-## 4. 经济基础与上层建筑：依赖结构决定一切
+## 2. Quantitative to Qualitative Change: Technical Debt and Refactoring Dialectics
 
-代码的"经济基础"是它的**依赖结构和数据流**。所有可见的"上层建筑"——命名、注释、文件组织、文档——都建立在这个基础之上。
+### Forward Quantitative Change: The Critical Point of Debt Accumulation
 
-### 基础决定上层
+The harm of technical debt is non-linear. 100 small architecture compromises do not produce 100 small problems — at a critical threshold they suddenly cause:
 
-- 如果依赖方向是错的，再漂亮的命名也救不了你
-- 如果数据流混乱，再详细的文档也描述不清楚
-- 如果组件边界画错，再好的文件组织也只是"把垃圾分类整齐"
+- New feature development time going from days to weeks
+- Every modification introducing new bugs
+- Team morale collapse, best engineers leaving
+- The entire system entering a "rewrite-only" state
 
-### 上层反作用于基础
+Signals of the approaching critical point:
+- New-member ramp-up time significantly increasing
+- "Fear-to-modify" code regions expanding
+- Test coverage unable to improve (because code is untestable)
+- Build and deployment times continuously growing
 
-- 清晰的命名能帮助发现依赖方向错误
-- 好的文件组织能暴露不合理的耦合
-- 代码审查中对上层建筑的关注，能推动基础的改善
+### Reverse Quantitative Change: The Accumulation Effect of Refactoring
 
-### 改革还是革命
+Continuous small improvements (refactoring) also produce a qualitative leap at a certain moment:
 
-- **改革**（重构）：在不改变外部行为的前提下改善内部结构。适用于基础大体正确、需要局部调整的情况
-- **革命**（重写）：推翻现有结构重新构��。只在基础已经完全腐烂、改革成本远高于重写时才考虑
-- 大多数情况下改革优于革命——重写很少成功，因为人们容易低估原有系统中积累的隐性知识
+- The system suddenly becomes "easy to understand" — new people ramp up fast
+- Modifications become "safe" — impact radius is predictable
+- Adding new features becomes "natural" — the architecture guides you toward correctness
 
----
-
-## 5. 实践是检验真理的唯一标准
-
-架构决策不能只在白板上推演。验证方式只有三种：
-
-### 测试
-
-- 业务逻辑必须可以脱离框架独立测试
-- 如果写测试很难，说明架构有问题——不是测试的问题，是被测代码的问题
-- 谦卑对象模式：把难以测试的部分简化到极致，把逻辑集中在可测试的对象中
-
-### 部署
-
-- 能一键部署吗？
-- 修改一个组件需要重新部署几个组件？
-- 部署失败能快速回滚吗？
-
-### 真实反馈
-
-- 用户如何使用系统？他们的使用方式是否与架构假设一致？
-- 哪些功能经常被修改？这些修改是否在同一个组件内完成？
-- 系统的实际瓶颈在哪里？是否与架构预期一致？
-
-**没有经过实践检验的架构决策就是空想。**
+The dialectic of refactoring: not "spend a month refactoring," but "leave the code cleaner than you found it on every change" (Boy Scout Rule). Quantitative-to-qualitative change requires discipline and patience.
 
 ---
 
-## 6. 主要矛盾与次要矛盾：抓住关键问题
+## 3. Negation of Negation: Architecture Evolution as Spiral Ascent
 
-在任何阶段，系统都有一个**主要矛盾**——解决它能带来最大改善。把精力花在次要矛盾上是浪费。
+Software architecture is not achieved in one step — it ascends in a spiral:
 
-### 如何识别主要矛盾
+1. **Thesis**: Rapid prototype (simple but fragile)
+2. **Antithesis**: Over-engineering (flexible but complex)
+3. **Synthesis**: Just-right architecture (flexible where needed, simple elsewhere)
 
-- 哪个组件的修改频率最高、影响范围最大？
-- 哪个依赖关系导致了最多的问题？
-- 哪个技术决策限制了最多的可能性？
-- 团队最痛苦的工作流程是什么？
+Each "negation" does not wholly destroy the prior stage — it practices **Aufhebung** (sublation): preserving the rational, negating the irrational:
 
-### 矛盾的转化
+- From monolith to microservices is not negating "code together" — it is negating "MUST deploy together"
+- From ORM to hand-written SQL is not negating "data mapping" — it is negating "the framework thinks for you"
+- From inheritance to composition is not negating "code reuse" — it is negating "reuse through inheritance hierarchies"
 
-主要矛盾解决后，原来的次要矛盾可能上升为主要矛盾。架构演进是一个持续的过程：
+### Negation of Negation in Historical Process
 
-1. 识别当前的主要矛盾
-2. 集中力量解决它
-3. 观察新的矛盾格局
-4. 重复
-
-这就是为什么"一劳永逸的完美架构"不存在——矛盾在不断转化，架构也必须不断演进。
+- Centralized → Client/Server → Web (centralized returns) → Microservices (distributed returns) → Service Mesh (centralized control returns)
+- Each "return" is not simple repetition — it is a return at a higher level
 
 ---
 
-## 应用方法
+## 4. Base Determines Superstructure: Dependency Structure Governs Everything
 
-当面对具体的工程决策时：
+Code's "economic base" is its **dependency structure and data flow**. Every visible "superstructure" — naming, comments, file organization, documentation — is built atop this base.
 
-1. **找到矛盾**：这个决策涉及哪些对立面？（灵活性 vs 简单性？当前 vs 未来？）
-2. **判断主次**：当前阶段，哪一面是主要的？系统目前缺什么？
-3. **找到平衡点**：不走极端，在两个方向之间找到当前阶段的最优位置
-4. **用实践验证**：做了决定后，通过测试和部署验证效果
-5. **准备调整**：条件变化时，平衡点也要跟着移动
+### Base Determines Superstructure
+
+- If the dependency direction is wrong, the most beautiful naming cannot save you
+- If the data flow is chaotic, the most detailed documentation cannot describe it clearly
+- If component boundaries are drawn wrong, the best file organization is just "neatly sorted garbage"
+
+### Superstructure Reacts Upon Base
+
+- Clear naming helps discover dependency direction errors
+- Good file organization exposes unreasonable coupling
+- Attention to superstructure in code review can drive base improvement
+
+### Reform or Revolution
+
+- **Reform** (refactoring): improve internal structure without changing external behavior. Applicable when the base is broadly correct and needs localized adjustment
+- **Revolution** (rewrite): overthrow the existing structure and rebuild. Consider only when the base is completely rotted and reform cost far exceeds rewrite cost
+- In most cases reform > revolution — rewrites rarely succeed because people underestimate the tacit knowledge accumulated in the existing system
+
+---
+
+## 5. Practice Is the Sole Criterion of Truth
+
+Architecture decisions cannot be validated on whiteboards alone. Verification comes only through:
+
+### Testing
+
+- Business logic MUST be testable independent of the framework (Humane Object pattern)
+- If writing tests is hard, the architecture is wrong — not the test's problem, but the code-under-test's problem
+- The Humble Object pattern: reduce hard-to-test parts to their simplest possible form; concentrate logic in testable objects
+
+### Deployment
+
+- Can you deploy with one command?
+- Changing one component requires redeploying how many components?
+- Can failed deployments roll back quickly?
+
+### Real Feedback
+
+- How do users actually use the system? Does their usage match architectural assumptions?
+- Which features are frequently modified? Do those modifications complete within a single component?
+- Where are the system's actual bottlenecks? Do they match architectural predictions?
+
+**An architecture decision not validated by practice is fantasy.**
+
+---
+
+## 6. Primary vs. Secondary Contradictions: Seizing the Key Problem
+
+At any stage, the system has a **primary contradiction** — resolving it yields the greatest improvement. Spending energy on secondary contradictions is waste.
+
+### How to Identify the Primary Contradiction
+
+- Which component has the highest modification frequency and largest blast radius?
+- Which dependency relationship causes the most problems?
+- Which technical decision limits the most possibilities?
+- What is the team's most painful workflow?
+
+### Transformation of Contradictions
+
+Once the primary contradiction is resolved, the former secondary contradiction may ascend to primary. Architecture evolution is a continuous process:
+
+1. Identify the current primary contradiction
+2. Concentrate forces to resolve it
+3. Observe the new contradiction landscape
+4. Repeat
+
+This is why a "once-and-for-all perfect architecture" does not exist — contradictions continuously transform, and architecture must continuously evolve.
+
+---
+
+## Application Method
+
+When facing a concrete engineering decision:
+
+1. **Find the contradiction**: Which opposing poles does this decision involve? (Flexibility vs. simplicity? Present vs. future?)
+2. **Judge primary vs. secondary**: At the current stage, which pole is primary? What is the system currently lacking?
+3. **Find the equilibrium point**: Do not go to extremes. Find the optimal position between the two directions for the current stage.
+4. **Validate through practice**: After deciding, verify through testing and deployment.
+5. **Prepare to adjust**: When conditions change, the equilibrium point must move with them.

@@ -1,63 +1,63 @@
 ---
 name: clean-architecture
 description: |
-  整洁架构（Clean Architecture）实战指南。当用户询问四层架构、依赖方向与依赖反转、实体直接依赖外部 SDK、数据访问层（repository）设计、微服务拆分、技术选型评估、或过度设计问题时使用。处理 Express/Next.js/Go/Spring 项目中的业务逻辑组织、MongoDB→PostgreSQL 迁移、REST→GraphQL 迁移、接入第三方 Stripe/PayPal、Redis 缓存与 Kafka 消息队列选型。基于 Robert C. Martin 整洁架构、SOLID 原则与依赖规则评估架构，用马斯克五步法防止过度设计。不要触发：纯代码质量、DDD、系统设计面试、单个 DTO 微观决策、缓存库选择、依赖注入框架调试、画架构图、翻译或格式化请求——直接回答而不调用本技能。
+  Clean Architecture practitioner's guide. Trigger when users ask about four-layer architecture, dependency direction & inversion (DIP), an entity directly depending on external SDKs, ORM/data access layer (Repository pattern) design, microservice decomposition, technology selection, over-engineering, or architecture refactoring. Covers business logic organization in Express/Next.js/Go/Spring projects, MongoDB→PostgreSQL migrate, REST→GraphQL migrate, third-party integration (Stripe/PayPal), Redis caching, and Kafka message queue evaluation. Evaluates architecture against Robert C. Martin's Clean Architecture, SOLID principles, and the Dependency Rule; uses Musk's five-step algorithm as an anti-over-engineering gate. Do NOT trigger on: pure code quality, DDD, system design interviews, single-DTO micro-decisions, cache library selection, DI framework debugging, diagram drawing, translation, or formatting requests — answer directly without invoking this skill.
 metadata:
   author: Tokenaissance
-  version: "1.2.0"
+  version: "1.2.1"
   upstream_inspiration: wondelai/skills:clean-architecture; affaan-m/everything-claude-code; giuseppe-trisciuoglio/developer-kit; pproenca/dot-skills
 ---
 
-# Clean Architecture 整洁架构实战
+# Clean Architecture
 
-分层、依赖方向与反过度设计的实用指南，基于 Robert C. Martin 整洁架构、SOLID 与马斯克五步法。
+A practical guide to layering, dependency direction, and anti-over-engineering — grounded in Robert C. Martin's Clean Architecture, SOLID, and Musk's five-step algorithm.
 
 ## Router Rules
 
-- 先用 frontmatter `description` 路由：命中四层架构、依赖反转、数据访问层、微服务/技术选型、过度设计等真实场景才进入本技能。
-- 命中后按下方工作流回答；本技能是架构指南，不是通用代码评审或调试入口。
-- 对「纯代码质量、DDD、系统设计面试、单个 DTO 微观决策、缓存库选择、框架机制调试、画架构图、翻译/格式化」直接回答，不调用本技能。
-- 尊重用户技术栈：用四层术语讲解，再映射到用户的真实框架（Express/Next.js/Go/Spring），不写死单一框架。
-- 术语以「建议语气」给出：默认优先使用 Entities / Use Cases / Interface Adapters / Frameworks 四层术语；Service/Repository/Controller 仅作为实现模式映射，不作主层名；允许用户已有约定时沿用。
-- 只读审计请求不修改任何文件。
+- The frontmatter `description` routes first: only trigger on genuine architecture scenarios — four-layer decomposition, DIP violations, data access layer design, microservice/technology evaluation, over-engineering.
+- Once triggered, follow the Workflow below. This skill is an architecture guide, not a general-purpose code review or debugging entrypoint.
+- For "pure code quality, DDD, system design interviews, single-DTO micro-decisions, cache library selection, DI framework debugging, diagram drawing, translation/formatting" — answer directly; do NOT invoke this skill.
+- Respect the user's stack: explain in four-layer terms first, then map to their actual framework (Express/Next.js/Go/Spring). Never hardcode a single framework.
+- Terminology is suggestive: default to Entities / Use Cases / Interface Adapters / Frameworks as the canonical layer names. Service/Repository/Controller are implementation-pattern mappings only — not primary layer names. If the user already has established conventions, adopt those.
+- Read-only audit requests do NOT modify any files.
 
 ## Use when
 
-- 业务逻辑堆在 controller/路由里，问怎么分层重构
-- 实体/用例直接依赖外部 SDK（Stripe/PayPal）或数据库驱动，问依赖方向对不对
-- 问要不要上微服务 / Kafka / Redis / 缓存，或做技术选型评估
-- REST→GraphQL、MongoDB→PostgreSQL 这类迁移对数据访问代码的影响
-- 接入多个第三方服务，怎么设计适配层便于切换
+- Business logic is piled into controllers/routes — how to refactor into layers (SRP + DIP)
+- Entities/Use Cases directly import external SDKs (Stripe/PayPal) or database drivers — is the dependency direction correct?
+- Evaluating whether to adopt microservices / Kafka / Redis / caching — technology selection under bounded context constraints
+- REST→GraphQL, MongoDB→PostgreSQL migrations — impact on data access code and Repository pattern boundaries
+- Integrating multiple third-party services — how to design an Adapter layer (Ports & Adapters pattern) for swappability
 
 ## Do NOT use when
 
-- 画架构图、翻译、格式化、写标题、总结文档
-- 依赖注入不生效、接口 500、SQL 慢查询 这类调试
-- React 组件拆分、单个 DTO 加不加 这类微观决策
-- 系统设计面试题（Twitter 千万用户、bit.ly、Saga、多租户等）——直接回答不调用
-- 用户明确说「不要讲架构」或「只解释」
+- Drawing architecture diagrams, translating, formatting, writing titles, summarizing documents
+- Debugging: DI not injecting, HTTP 500, slow SQL queries
+- Micro-decisions: splitting a React component, whether to add a single DTO
+- System design interview questions (Twitter-scale, bit.ly, Saga, multi-tenancy) — answer directly
+- User explicitly says "don't talk about architecture" or "just explain"
 
 ## Workflow
 
-1. **诊断（先问，不先给方案）**：确认输入规模、团队大小、并发与变更频率。变更原因相同、一起变的代码才需要边界；未证实的变化轴上保持简单。
-2. **应用原则**：基于四层同心圆与依赖规则（Entities → Use Cases → Interface Adapters → Frameworks，依赖只指向内层）、SOLID 五原则、组件构建原则、马斯克五步法和工程辩证法评估架构。具体原则见 Reference Map。
-3. **结构化回答**（命中架构场景时给出）：
-   - 四层术语：Entities（实体）/ Use Cases（用例）/ Interface Adapters（接口适配器）/ Frameworks（框架与驱动）
-   - 依赖规则：源码依赖只指向内层，画依赖方向箭头
-   - 用户栈映射：把四层映射到用户实际框架与目录结构
-   - 代码示例：带层标签的最小前后对比，不超过 50 行
-4. **反过度设计检查**：任何「上复杂方案」的建议先跑马斯克五步——质疑需求 → 删除 → 简化 → 加速 → 自动化，顺序不可颠倒；能用单体就不要先拆微服务。
-5. **文档同构（按需）**：架构决策必须可被后续 Agent 和开发者发现——改代码不更新文档视为未完成。文档粒度匹配决策影响范围：跨层重构走 L3→L2→L1 完整回环，一个 import 调整只改一行 L3。详见 Reference Map → 文档同构。
+1. **Diagnose first — ask before prescribing**: Confirm input scale, team size, concurrency, and change frequency. Code that changes for the same reason at the same time belongs together (CCP); code that changes for different reasons must be separated (SRP). Only invest boundaries on proven variation axes; keep it simple on unproven ones.
+2. **Apply principles**: Evaluate architecture against the four-layer concentric model and Dependency Rule (Entities → Use Cases → Interface Adapters → Frameworks; source-code dependencies point inward only), SOLID (SRP/OCP/LSP/ISP/DIP), component principles (CCP/CRP/ADP/SDP/SAP), Musk's five-step algorithm, and engineering dialectics. See Reference Map for specifics.
+3. **Structured answer** (deliver when the scenario hits):
+   - Four-layer terminology: Entities / Use Cases / Interface Adapters / Frameworks & Drivers
+   - Dependency Rule: source-code dependencies point inward only — draw the direction arrows
+   - Stack mapping: map the four layers onto the user's actual framework and directory structure
+   - Code example: minimal before/after with layer labels, ≤ 50 lines
+4. **Anti-over-engineering gate**: Any "adopt the complex solution" advice must first pass Musk's five steps — Question → Delete → Simplify → Accelerate → Automate, order non-negotiable. If a monolith suffices, do not propose microservices.
+5. **Documentation isomorphism (as needed)**: Architecture decisions MUST be discoverable by downstream Agents and developers — code changes without documentation updates are incomplete. Documentation granularity matches decision impact: a cross-layer refactor walks the full L3→L2→L1 loop; a single import change updates one L3 line. See Reference Map → Documentation Isomorphism.
 
 ## Output Contract
 
-- 命中场景：诊断结论 + 四层映射 + 依赖规则说明 + 用户栈映射 + 最小代码示例 + 过度设计检查结论。重大架构决策时附带 L2/L3 文档骨架。
-- 未命中场景：直接回答，不套用本技能模板
-- 不输出完整目录脚手架（>5 个目录或含具体文件名），除非用户明确要求；默认给出层级别目录建议（≤5 个目录名，不含具体文件）
+- Hit scenario: diagnosis + four-layer mapping + Dependency Rule explanation + stack mapping + minimal code example + anti-over-engineering verdict. For major architecture decisions, append L2/L3 documentation skeletons.
+- Miss scenario: answer directly; do not apply this skill's template.
+- Do NOT output a full directory scaffold (> 5 directories or containing specific file names) unless the user explicitly requests it. Default to layer-level directory suggestions (≤ 5 directory names, no specific files).
 
 ## Reference Map
 
-- 理论与原则：`references/clean-architecture.md`
-- 反过度设计：`references/musk-algorithm.md`
-- 工程哲学：`references/engineering-philosophy.md`
-- 文档同构：`references/geb-fractal-docs.md`
+- Theory & Principles: `references/clean-architecture.md`
+- Anti-Over-Engineering: `references/musk-algorithm.md`
+- Engineering Philosophy: `references/engineering-philosophy.md`
+- Documentation Isomorphism: `references/geb-fractal-docs.md`

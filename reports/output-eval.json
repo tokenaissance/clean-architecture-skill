@@ -1,7 +1,7 @@
 {
   "ok": true,
   "evidence_kind": "behavior_specification",
-  "generated_at": "2026-08-05",
+  "generated_at": "2026-08-09",
   "contract_coverage": {
     "pass": true,
     "dimensions": [
@@ -19,41 +19,42 @@
       },
       {
         "dimension": "dependency_rule",
-        "label": "依赖规则",
+        "label": "Dependency Rule",
         "pass": true,
         "matched_terms": [
-          "依赖",
-          "方向",
-          "内层"
+          "Dependency Rule",
+          "inward",
+          "source-code dependencies"
         ],
         "missing_terms": []
       },
       {
         "dimension": "stack_mapping",
-        "label": "栈映射",
+        "label": "Stack Mapping",
         "pass": true,
         "matched_terms": [
-          "映射",
+          "stack mapping",
           "Express"
         ],
         "missing_terms": []
       },
       {
         "dimension": "code_example",
-        "label": "代码示例",
+        "label": "Code Example",
         "pass": true,
         "matched_terms": [
-          "代码示例"
+          "code example"
         ],
         "missing_terms": []
       },
       {
         "dimension": "overengineering_check",
-        "label": "过度设计检查",
+        "label": "Over-Engineering Gate",
         "pass": true,
         "matched_terms": [
-          "五步",
-          "过度设计"
+          "anti-over-engineering",
+          "five steps",
+          "Musk's"
         ],
         "missing_terms": []
       }
@@ -79,7 +80,7 @@
         },
         {
           "dimension": "dependency_rule",
-          "label": "依赖规则",
+          "label": "Dependency Rule",
           "pass": true,
           "matched_terms": [
             "依赖",
@@ -90,7 +91,7 @@
         },
         {
           "dimension": "stack_mapping",
-          "label": "栈映射",
+          "label": "Stack Mapping",
           "pass": true,
           "matched_terms": [
             "映射",
@@ -100,7 +101,7 @@
         },
         {
           "dimension": "code_example",
-          "label": "代码示例",
+          "label": "Code Example",
           "pass": true,
           "matched_terms": [
             "```"
@@ -128,7 +129,7 @@
         },
         {
           "dimension": "dependency_rule",
-          "label": "依赖规则",
+          "label": "Dependency Rule",
           "pass": true,
           "matched_terms": [
             "依赖",
@@ -139,7 +140,7 @@
         },
         {
           "dimension": "stack_mapping",
-          "label": "栈映射",
+          "label": "Stack Mapping",
           "pass": true,
           "matched_terms": [
             "映射",
@@ -149,7 +150,7 @@
         },
         {
           "dimension": "code_example",
-          "label": "代码示例",
+          "label": "Code Example",
           "pass": true,
           "matched_terms": [
             "```"
@@ -165,7 +166,7 @@
       "dimensions": [
         {
           "dimension": "overengineering_check",
-          "label": "过度设计检查",
+          "label": "Over-Engineering Gate",
           "pass": true,
           "matched_terms": [
             "过度设计",
@@ -176,7 +177,7 @@
         },
         {
           "dimension": "stack_mapping",
-          "label": "栈映射",
+          "label": "Stack Mapping",
           "pass": true,
           "matched_terms": [
             "映射",
@@ -193,7 +194,7 @@
       "dimensions": [
         {
           "dimension": "dependency_rule",
-          "label": "依赖规则",
+          "label": "Dependency Rule",
           "pass": true,
           "matched_terms": [
             "依赖",
@@ -204,7 +205,7 @@
         },
         {
           "dimension": "stack_mapping",
-          "label": "栈映射",
+          "label": "Stack Mapping",
           "pass": true,
           "matched_terms": [
             "映射",
@@ -214,7 +215,7 @@
         },
         {
           "dimension": "code_example",
-          "label": "代码示例",
+          "label": "Code Example",
           "pass": true,
           "matched_terms": [
             "```"

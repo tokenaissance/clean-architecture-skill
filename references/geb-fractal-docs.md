@@ -1,117 +1,117 @@
 /**
- * [INPUT]: 依赖 references/clean-architecture.md 的四层模型作为映射目标
- * [OUTPUT]: 两相同构本体论、三层分形模板（L1/L2/L3）、整洁架构映射表、应用时机决策表
- * [POS]: references/ 的文档纪律层，将架构决策从代码单相扩展到代码-文档双相，SKILL.md Workflow step 5 的理论基础
- * [PROTOCOL]: 变更时更新此头部，然后检查 SKILL.md Workflow step 5 和 Reference Map 描述是否仍然准确
+ * [INPUT]: Depends on references/clean-architecture.md's four-layer model as the mapping target
+ * [OUTPUT]: Code-document isomorphism ontology, three-layer fractal templates (L1/L2/L3), Clean Architecture mapping table, application-timing decision matrix
+ * [POS]: references/' documentation-discipline layer — extends architecture decisions from code-only (machine-phase) to code-document dual-phase. Theoretical foundation for SKILL.md Workflow step 5
+ * [PROTOCOL]: On change, update this header, then verify SKILL.md Workflow step 5 and Reference Map descriptions remain accurate
  */
 
-# GEB 分形文档系统 — 代码与文档的同构纪律
+# GEB Fractal Documentation System — Code-Document Isomorphism Discipline
 
-> 核心思想源自 @chunxiang 的 GEB 分形文档协议：代码是实体的机器相（供计算机执行），文档是实体的语义相（供 Agent 和人类理解）。两相必须同构——任一相变化必须在另一相显现，否则视为未完成。
-
----
-
-## 目录
-
-1. [本体论：两相同构](#1-本体论两相同构)
-2. [三层分形模板](#2-三层分形模板)
-3. [与整洁架构的映射](#3-与整洁架构的映射)
-4. [应用时机](#4-应用时机)
+> Core concept originates from @chunxiang's GEB fractal documentation protocol: code is the machine-phase of an entity (for computer execution); documentation is the semantic-phase (for Agent and human understanding). The two phases must be isomorphic — any change in one phase MUST manifest in the other, or the task is incomplete.
 
 ---
 
-## 1. 本体论：两相同构
+## Table of Contents
 
-传统文档是"事后补充"——写完代码再写文档，文档永远过时。GEB 倒转这个假设：
-
-- **代码是实体的机器相**，供计算机执行
-- **文档是实体的语义相**，供 Agent 和人类理解
-- **两相必须同构**：任何一相变化，另一相必须同步显现
-
-这不是"写好文档"的劝告，而是**架构纪律**。依赖方向错了，文档再漂亮也救不了你；文档没跟上，代码的正确性就无法被验证。
-
-最小纪律：**每次 commit 前，检查涉及文件的 L3 头部和所在模块的 L2 是否仍然正确。** 这个微小的习惯累积三个月后，你的系统仍然能被任何 Agent 或新成员在 5 分钟内理解。
+1. [Ontology: Dual-Phase Isomorphism](#1-ontology-dual-phase-isomorphism)
+2. [Three-Layer Fractal Templates](#2-three-layer-fractal-templates)
+3. [Clean Architecture Mapping](#3-clean-architecture-mapping)
+4. [Application Timing](#4-application-timing)
 
 ---
 
-## 2. 三层分形模板
+## 1. Ontology: Dual-Phase Isomorphism
 
-分形的核心是**自相似性**——每一层都是上一层的折叠。
+Traditional documentation is an afterthought — write code first, document later, documentation perpetually stale. GEB inverts this assumption:
 
-| 层级 | 位置 | 职责 | 触发更新 |
-|------|------|------|----------|
-| L1 | `/CLAUDE.md` | 项目宪法·技术栈·模块地图 | 架构变更/顶级模块增删 |
-| L2 | `/{module}/CLAUDE.md` | 成员清单·暴露接口·父级链接 | 文件增删/接口变更 |
-| L3 | 文件头部注释 | INPUT/OUTPUT/POS 契约 | 依赖变更/职责变更 |
+- **Code is the machine-phase** of an entity, for computer execution
+- **Documentation is the semantic-phase**, for Agents and humans to understand
+- **The two phases must be isomorphic**: any change in one phase must synchronously manifest in the other
 
-### L1 — 项目宪法（≤50 行）
+This is not a "write better docs" exhortation — it is an **architecture discipline**. A wrong dependency direction cannot be rescued by beautiful documentation; undocumented code cannot have its correctness verified by downstream consumers.
 
-极简导航。技术栈、顶层目录、关键配置。30 秒可读。
+Minimum discipline: **before every commit, check whether the L3 headers of touched files and the L2 of their parent module remain accurate.** This micro-habit, compounded over three months, keeps your system comprehensible to any Agent or new team member within 5 minutes.
 
-### L2 — 模块地图
+---
 
-一行一文件。写清楚每个文件的职责和它为何存在。父级链接保持分形连通。
+## 2. Three-Layer Fractal Templates
 
-### L3 — 文件头部契约
+The fractal core is **self-similarity** — each layer is a fold of the layer above.
+
+| Layer | Location | Responsibility | Trigger for Update |
+|-------|----------|----------------|-------------------|
+| L1 | `/CLAUDE.md` | Project constitution · tech stack · module map | Architecture change / top-level module add/remove |
+| L2 | `/{module}/CLAUDE.md` | Member inventory · exposed interface · parent link | File add/remove / interface change |
+| L3 | File header comment | INPUT/OUTPUT/POS contract | Dependency change / responsibility change |
+
+### L1 — Project Constitution (≤ 50 lines)
+
+Minimal navigation. Tech stack, top-level directory structure, key configuration. Readable in 30 seconds.
+
+### L2 — Module Map
+
+One line per file. State what each file does and why it exists. The parent link maintains fractal connectivity.
+
+### L3 — File Header Contract
 
 ```
 /**
- * [INPUT]: 依赖 {模块/文件} 的 {具体能力}
- * [OUTPUT]: 对外提供 {导出的函数/组件/类型/常量}
- * [POS]: {所属模块} 的 {角色定位}，{与兄弟文件的关系}
- * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+ * [INPUT]: depends on {module/file}'s {specific capability}
+ * [OUTPUT]: exposes {exported functions/components/types/constants}
+ * [POS]: {role} within {module}, {relationship to sibling files}
+ * [PROTOCOL]: On change, update this header, then check CLAUDE.md
  */
 ```
 
-写 L2/L3 不是罗列变量名——回答的是**它是什么、为何存在、与谁协作、依赖方向为何如此**。写不出的句子就不写。
+Writing L2/L3 is not listing variable names — it answers: **what it is, why it exists, who it collaborates with, and why the dependency direction was chosen.** If you cannot write a sentence that would cause information loss when deleted, don't write it.
 
 ---
 
-## 3. 与整洁架构的映射
+## 3. Clean Architecture Mapping
 
-GEB 是整洁架构在**语义层的投影**。三层分形直接映射到四层架构。
+GEB is Clean Architecture projected onto the **semantic layer**. The three-layer fractal maps directly onto the four-layer architecture.
 
-### L1 → 架构边界声明
+### L1 → Architecture Boundary Declaration
 
-L1 记录的不是"用了什么库"，而是**架构边界和依赖方向**：四层分别对应哪些目录？依赖方向是什么？跨越边界的机制是什么？
+L1 records not "what libraries we use" but **architecture boundaries and dependency direction**: which directories correspond to which of the four layers? What is the dependency direction? What mechanism crosses boundaries (interface + DI? Ports & Adapters?)?
 
-### L2 → 层接口定义
+### L2 → Layer Interface Definition
 
-每个模块的 L2 定义该层对外暴露的接口：Entities 暴露什么类型？Use Cases 暴露什么输入/输出端口？Interface Adapters 暴露什么实现？
+Each module's L2 defines what interface that layer exposes: what types does the Entities layer export? What input/output ports do Use Cases expose? What Repository implementations and Controllers do Interface Adapters provide?
 
-### L3 → 依赖违规的最早检测点
+### L3 → Earliest DIP-Violation Detection Point
 
-**L3 的 INPUT 字段比测试更快、比代码审查更早地暴露架构违规**：
+**The L3 INPUT field catches architecture violations faster than tests and earlier than code review**:
 
-| L3 INPUT 中出现... | 问题 | 违反规则 |
+| Pattern in L3 INPUT | Problem | Rule Violated |
 |---|---|---|
-| HTTP 请求对象 in Use Case | 用例依赖了传输层 | 内层依赖外层 |
-| ORM/数据库驱动 in Entity | 实体依赖了数据访问层 | 内层依赖外层 |
-| 第三方服务 SDK in Entity | 实体直接依赖外部服务 | 内层依赖外层 |
-| 实现类而非接口 in Adapter OUTPUT | 适配器暴露了实现细节 | DIP 违反 |
+| HTTP request object in Use Case | Use Case depends on transport layer | Inner depends on outer (Dependency Rule) |
+| ORM/database driver in Entity | Entity depends on data access layer | Inner depends on outer |
+| Third-party service SDK in Entity | Entity directly depends on external service | Inner depends on outer |
+| Concrete class instead of interface in Adapter OUTPUT | Adapter exposes implementation detail | DIP violation |
 
-> 上表是模式层面——具体框架等价物：Node 的 `express.Request` = Go 的 `*http.Request` = Spring 的 `HttpServletRequest`。任何框架的 HTTP 请求对象出现在 Use Case 层，都是同一个问题。
+> The table above is pattern-level. Framework equivalents: Node's `express.Request` = Go's `*http.Request` = Spring's `HttpServletRequest`. Any framework's HTTP request object appearing in a Use Case layer is the same DIP violation.
 
-### 冷启动：播种机协议
+### Cold Start: Seeder Protocol
 
-进入新项目或新模块时：
+When entering a new project or module:
 
-1. **侦察**：检查 L1/L2 是否存在，扫描目录识别模块边界
-2. **播种**：L1 缺失 → 分析 `package.json`/`go.mod` 播下。L2 缺失 → 列举文件推断职责播下。L3 缺失 → 分析 import/export 推断位置播下
-3. **生根**：文档就绪后，每次代码变更自动触发回环检查
+1. **Recon**: Check if L1/L2 exist. Scan directory structure, identify module boundaries.
+2. **Seed**: L1 missing → analyze `package.json`/`go.mod`, sow L1. L2 missing → enumerate files, infer responsibilities, sow L2. L3 missing → analyze import/export, infer position, sow L3 headers.
+3. **Root**: Once documentation is in place, every subsequent code change triggers the loop check automatically.
 
 ---
 
-## 4. 应用时机
+## 4. Application Timing
 
-不是所有场景都需要全套三层文档。按决策影响范围决定：
+Not every scenario demands the full three-layer documentation suite. Match documentation granularity to decision impact:
 
-| 场景 | 最小文档 |
-|------|----------|
-| 新建项目/模块 | L1 + L2 + 所有文件 L3 |
-| 新增文件 | 该文件 L3 + 父模块 L2 追加一行 |
-| 修改依赖方向（import 变了） | L3 INPUT 更新 |
-| 跨层重构 | L3 → L2 → L1 全链路回环检查 |
-| 快速问答（"这个放哪层"） | 不需要文档变更 |
+| Scenario | Minimum Documentation |
+|----------|----------------------|
+| New project / module | L1 + L2 + L3 on all files |
+| New file | L3 on the file + append one line to parent module L2 |
+| Dependency direction change (import changed) | L3 INPUT update |
+| Cross-layer refactor | L3 → L2 → L1 full-loop check |
+| Quick Q&A ("which layer does this go in?") | No documentation change needed |
 
-**原则**：文档粒度匹配决策影响范围。一个 import 调整只改 L3 一行，一次架构重构走完整回环。不为了"完整性"而过度文档化——那本身就是违反 Musk 第二步的行为。
+**Principle**: documentation granularity matches decision impact radius. A single import adjustment changes one L3 line. An architecture restructure walks the full loop. Do not over-document for the sake of "completeness" — that behavior is itself a Musk Step-2 violation.

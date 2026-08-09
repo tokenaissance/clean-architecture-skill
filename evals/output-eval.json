@@ -9,26 +9,26 @@
       "description": "答案使用四层术语解释架构"
     },
     "dependency_rule": {
-      "label": "依赖规则",
-      "coverage_terms": ["依赖", "方向", "内层"],
+      "label": "Dependency Rule",
+      "coverage_terms": ["Dependency Rule", "inward", "source-code dependencies"],
       "required_terms": ["依赖", "方向", "内层"],
       "description": "答案说明源码依赖只指向内层并给出方向"
     },
     "stack_mapping": {
-      "label": "栈映射",
-      "coverage_terms": ["映射", "Express"],
+      "label": "Stack Mapping",
+      "coverage_terms": ["stack mapping", "Express"],
       "required_terms": ["映射", "Express"],
       "description": "答案把四层映射到用户的真实技术栈"
     },
     "code_example": {
-      "label": "代码示例",
-      "coverage_terms": ["代码示例"],
+      "label": "Code Example",
+      "coverage_terms": ["code example"],
       "required_terms": ["```"],
       "description": "答案包含带层标签的最小代码示例"
     },
     "overengineering_check": {
-      "label": "过度设计检查",
-      "coverage_terms": ["五步", "过度设计"],
+      "label": "Over-Engineering Gate",
+      "coverage_terms": ["anti-over-engineering", "five steps", "Musk's"],
       "required_terms": ["过度设计", "五步", "简化"],
       "description": "答案包含反过度设计检查（马斯克五步法）"
     }

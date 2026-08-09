@@ -1,6 +1,11 @@
-# Creation Handoff — clean-architecture v1.2.0
+# Creation Handoff — clean-architecture v1.2.1
 
 > 交付简报：本技能如何从个人级技能（2026-03-10，16.5KB 单体 SKILL.md）重建为公开 governed 发布包。
+
+## v1.2.1 更新（2026-08-09）
+
+- **`references/clean-architecture.md` 术语密度重译**：全部 10 节以极密行话（SRP/OCP/LSP/ISP/DIP/CCP/CRP/REP/ADP/SDP/SAP/DAG、Ports & Adapters、Humble Object、Event Sourcing、Facade、Strategy、Abstract Factory、I/A metrics、D = |A+I-1|、Conway's Law、Eisenhower matrix、Main Sequence、Zone of Pain/Uselessness）重写。语气由 teacher→student 改为 architect→architect；消除解释性散文，聚焦术语精确度与可操作的启发式方法。
+- 行为、触发边界、评测与 Workflow 不变；本轮仅单个 reference 文件内容质量升级 + 版本号变更。
 
 ## v1.2.0 更新（2026-08-09）
 

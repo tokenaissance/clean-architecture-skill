@@ -7,6 +7,7 @@
     "dataaccess",
     "dependency",
     "entity",
+    "layering",
     "overengineering",
     "refactor",
     "tech"
@@ -28,9 +29,10 @@
         "expected_trigger": true,
         "predicted_trigger": true,
         "passed": true,
-        "score": 0.6,
+        "score": 0.8,
         "matched_concepts": [
           "adapter",
+          "layering",
           "refactor",
           "tech"
         ],
@@ -264,11 +266,12 @@
         "expected_trigger": false,
         "predicted_trigger": false,
         "passed": true,
-        "score": 0.2,
+        "score": 0.4,
         "matched_concepts": [
+          "layering",
           "overengineering"
         ],
-        "negative_pattern": null
+        "negative_pattern": "太细"
       }
     ]
   }
