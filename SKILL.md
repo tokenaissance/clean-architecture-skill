@@ -4,7 +4,7 @@ description: |
   整洁架构（Clean Architecture）实战指南。当用户询问四层架构、依赖方向与依赖反转、实体直接依赖外部 SDK、数据访问层（repository）设计、微服务拆分、技术选型评估、或过度设计问题时使用。处理 Express/Next.js/Go/Spring 项目中的业务逻辑组织、MongoDB→PostgreSQL 迁移、REST→GraphQL 迁移、接入第三方 Stripe/PayPal、Redis 缓存与 Kafka 消息队列选型。基于 Robert C. Martin 整洁架构、SOLID 原则与依赖规则评估架构，用马斯克五步法防止过度设计。不要触发：纯代码质量、DDD、系统设计面试、单个 DTO 微观决策、缓存库选择、依赖注入框架调试、画架构图、翻译或格式化请求——直接回答而不调用本技能。
 metadata:
   author: Tokenaissance
-  version: "1.1.1"
+  version: "1.2.0"
   upstream_inspiration: wondelai/skills:clean-architecture; affaan-m/everything-claude-code; giuseppe-trisciuoglio/developer-kit; pproenca/dot-skills
 ---
 
@@ -40,22 +40,24 @@ metadata:
 ## Workflow
 
 1. **诊断（先问，不先给方案）**：确认输入规模、团队大小、并发与变更频率。变更原因相同、一起变的代码才需要边界；未证实的变化轴上保持简单。
-2. **读理论（按需）**：`references/clean-architecture.md`（四层同心圆、依赖规则、SOLID、组件原则）、`references/musk-algorithm.md`（五步法）、`references/engineering-philosophy.md`（辩证平衡）。
+2. **应用原则**：基于四层同心圆与依赖规则（Entities → Use Cases → Interface Adapters → Frameworks，依赖只指向内层）、SOLID 五原则、组件构建原则、马斯克五步法和工程辩证法评估架构。具体原则见 Reference Map。
 3. **结构化回答**（命中架构场景时给出）：
    - 四层术语：Entities（实体）/ Use Cases（用例）/ Interface Adapters（接口适配器）/ Frameworks（框架与驱动）
    - 依赖规则：源码依赖只指向内层，画依赖方向箭头
    - 用户栈映射：把四层映射到用户实际框架与目录结构
    - 代码示例：带层标签的最小前后对比，不超过 50 行
 4. **反过度设计检查**：任何「上复杂方案」的建议先跑马斯克五步——质疑需求 → 删除 → 简化 → 加速 → 自动化，顺序不可颠倒；能用单体就不要先拆微服务。
+5. **文档同构（按需）**：架构决策必须可被后续 Agent 和开发者发现——改代码不更新文档视为未完成。文档粒度匹配决策影响范围：跨层重构走 L3→L2→L1 完整回环，一个 import 调整只改一行 L3。详见 Reference Map → 文档同构。
 
 ## Output Contract
 
-- 命中场景：诊断结论 + 四层映射 + 依赖规则说明 + 用户栈映射 + 最小代码示例 + 过度设计检查结论
+- 命中场景：诊断结论 + 四层映射 + 依赖规则说明 + 用户栈映射 + 最小代码示例 + 过度设计检查结论。重大架构决策时附带 L2/L3 文档骨架。
 - 未命中场景：直接回答，不套用本技能模板
-- 不输出完整目录脚手架，除非用户明确要求；默认给出贴合的目录建议
+- 不输出完整目录脚手架（>5 个目录或含具体文件名），除非用户明确要求；默认给出层级别目录建议（≤5 个目录名，不含具体文件）
 
 ## Reference Map
 
 - 理论与原则：`references/clean-architecture.md`
 - 反过度设计：`references/musk-algorithm.md`
 - 工程哲学：`references/engineering-philosophy.md`
+- 文档同构：`references/geb-fractal-docs.md`

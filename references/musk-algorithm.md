@@ -1,3 +1,10 @@
+/**
+ * [INPUT]: 无外部依赖，源自 Elon Musk 在 Model 3 量产期的工程方法论总结
+ * [OUTPUT]: 五步工作法（质疑→删除→简化→加速→自动化）及其在软件工程中的具体应用
+ * [POS]: references/ 的反过度设计约束，SKILL.md Workflow step 4 的理论基础
+ * [PROTOCOL]: 变更时更新此头部，然后检查 SKILL.md Workflow step 4 是否仍然准确
+ */
+
 # 马斯克五步工作法 (The Algorithm)
 
 来源：埃隆·马斯克在 Model 3 量产地狱时期总结的工程方法论。
