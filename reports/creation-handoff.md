@@ -1,6 +1,11 @@
-# Creation Handoff — clean-architecture v1.2.1
+# Creation Handoff — clean-architecture v1.2.2
 
 > 交付简报：本技能如何从个人级技能（2026-03-10，16.5KB 单体 SKILL.md）重建为公开 governed 发布包。
+
+## v1.2.2 更新（2026-08-09）
+
+- **SKILL.md 行话密度重写**：Router Rules、Use/Don't Use、5-step Workflow、Output Contract 全部以更密集的术语重写。SOLID 首字母缩写（SRP/OCP/LSP/ISP/DIP）与组件原则（REP/CCP/CRP/ADP/SDP/SAP）全文内联；Workflow 步骤现在使用数学符号（∀ dep → inward、⊥ 层分离）、辩证学术语（unity of opposites、quantitative→qualitative change、negation of negation）以及 terser 的 architect→architect 指令语气。反过度设计门槛新增「单一实现→不要提出接口抽象」启发式方法。
+- 行为、触发边界、评测不变；本轮仅 SKILL.md 内容密度升级 + 版本号变更。
 
 ## v1.2.1 更新（2026-08-09）
 
