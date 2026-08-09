@@ -1,97 +1,99 @@
 /**
- * [INPUT]: 无外部依赖，源自 Elon Musk 在 Model 3 量产期的工程方法论总结
- * [OUTPUT]: 五步工作法（质疑→删除→简化→加速→自动化）及其在软件工程中的具体应用
- * [POS]: references/ 的反过度设计约束，SKILL.md Workflow step 4 的理论基础
- * [PROTOCOL]: 变更时更新此头部，然后检查 SKILL.md Workflow step 4 是否仍然准确
+ * [INPUT]: No external dependencies. Originates from Elon Musk's engineering methodology during the Model 3 production ramp
+ * [OUTPUT]: The five-step algorithm (Question → Delete → Simplify → Accelerate → Automate) and its concrete application in software engineering
+ * [POS]: references/' anti-over-engineering constraint. Theoretical foundation for SKILL.md Workflow step 4
+ * [PROTOCOL]: On change, update this header, then verify SKILL.md Workflow step 4 remains accurate
  */
 
-# 马斯克五步工作法 (The Algorithm)
+# Musk's Five-Step Algorithm
 
-来源：埃隆·马斯克在 Model 3 量产地狱时期总结的工程方法论。
+Source: Elon Musk's engineering methodology forged during the Model 3 production hell.
 
-核心洞察："聪明的工程师最常犯的错误，就是去优化一个根本不应该存在的东西。"
+Core insight: "The most common error of a smart engineer is to optimize a thing that should not exist."
 
-学校教育训练我们"回答问题"（收敛性思维），却很少教我们"质疑问题"。这五步的**顺序不可颠倒**。
-
----
-
-## 第一步：让需求不那么蠢 (Make requirements less dumb)
-
-所有的需求在某种程度上都是错的。
-
-- 不管需求是谁提出的——顶级专家、老板、甚至马斯克本人——都要质疑
-- 聪明人提出的需求更危险，因为你下意识不敢质疑他们
-- 拿到需求的第一步不是执行，而是修正它
-
-**在软件工程中的应用：**
-- 收到 feature request 时，先追问"为什么需要这个功能？"
-- 用户说"给我加个按钮"，真正的需求可能是"让我更快完成 X 任务"
-- 质疑技术需求："我们真的需要微服务吗？" "这个抽象层解决的是什么问题？"
-- 质疑非功能性需求："99.99% 的��用性真的必要吗？成本是多少？"
-
-## 第二步：删除部件或流程 (Delete the part or process)
-
-我们天生倾向于"增加"东西以防万一，这是巨大的陷阱。
-
-- 不要为了"以防万一"保留冗余
-- **10% 法则**：如果你最后没有因为删得太狠而被迫把 10% 的东西加回来，说明你删得还不够
-- 大胆删除。如果没删错东西，说明删得不够
-
-**在软件工程中的应用：**
-- 删除没有被调用的代码，而不是注释掉（版本控制会记住它）
-- 删除"以防万一"的抽象层——如果只有一个实现，接口就是多余的
-- 删除不产生价值的测试（只测试语言特性的测试、只测试 mock 的测试）
-- 删除不必要的依赖包——每个依赖都是攻击面和维护成本
-- 删除不必要的配置选项——配置越多，测试矩阵越大
-- 删除不必要的微服务——如果两个服务总是一起部署，合并它们
-
-## 第三步：简化或优化 (Simplify or optimize)
-
-**这一步必须排在"删除"之后。**
-
-很多人的错误在于跳过前两步直接开始优化。如果你优化了一个本该被删除的流程，你就是在做无用功。只有确信某个东西必须存在时，才考虑如何让它更简单。
-
-**在软件工程中的应用：**
-- 用直接的函数调用替代复杂的事件系统（如果没有多个消费者）
-- 用简单的 if-else 替代策略模式（如果只有两三个分支）
-- 用内联代码替代不必��的工具函数（如果只用了一次）
-- 简化数据流——数据经过的层次越少越好
-- 简化 API——参数越少越好，约定优于配置
-
-## 第四步：加速周转时间 (Accelerate cycle time)
-
-只有做完前三步才考虑加速。
-
-"如果你正在自掘坟墓，不要挖得更快，先停下来。"
-
-**在软件工程中的应用：**
-- 加速构建时间（增量编译、缓存、并行构建）
-- 加速测试（只运行受影响的测试、并行执行）
-- 加速部署（CI/CD 管线优化、缩短反馈循环）
-- 加速代码审查（小批次提交、清晰的 PR 描述）
-- 缩短从想法到生产的周期
-
-## 第五步：自动化 (Automate)
-
-机器是最后一步。不要一上来就搞自动化。
-
-马斯克承认他在 Model 3 生产线上犯的大错就是颠倒了顺序——先自动化，再加速，最后发现那个环节根本不需要。等流程极其成熟且必要后，再交给机器。
-
-**在软件工程中的应用：**
-- 先手动做几次确认流程正确，再写自动化脚本
-- 先理解部署流程，再写 CI/CD
-- 先手动测试关键路径，再写端到端自动化测试
-- 先理解数据转换规则，再写 ETL 管线
-- Code generation 和 AI 辅助编程也是自动化——先确认你要生成的东西是必要的
+School trains us to "answer questions" (convergent thinking) but rarely to "question the questions." The five steps are **order-non-negotiable**.
 
 ---
 
-## 完整链条
+## Step 1: Make Requirements Less Dumb
+
+All requirements are wrong to some degree.
+
+- Question every requirement — regardless of who proposed it: top expert, boss, even Musk himself
+- Requirements from smart people are MORE dangerous because you instinctively hesitate to challenge them
+- Your first job upon receiving a requirement is not to execute — it is to refine it
+
+**In software engineering:**
+- When you receive a feature request, first ask "why do you need this feature?"
+- User says "add a button" — the real requirement might be "let me complete task X faster"
+- Question technical requirements: "Do we really need microservices?" "What problem does this abstraction layer solve?"
+- Question non-functional requirements: "Is 99.99% availability truly necessary? At what cost?"
+- Apply SRP: does this requirement pull the module in a new change-direction, or align with existing responsibilities?
+
+## Step 2: Delete the Part or Process
+
+We are wired to "add" things just in case — this is a massive trap.
+
+- Do not retain redundancy "just in case"
+- **The 10% rule**: if you don't end up having to add back 10% of what you deleted because you cut too deep, you didn't cut enough
+- Delete boldly. If you haven't deleted something wrong, you're not deleting enough
+
+**In software engineering:**
+- Delete uncalled code — don't comment it out (version control remembers)
+- Delete "just in case" abstraction layers — if there's only one implementation, the interface is dead weight (YAGNI)
+- Delete tests that test nothing: language-feature tests, mock-only tests
+- Delete unnecessary dependency packages — every dependency is an attack surface and maintenance cost
+- Delete unnecessary configuration options — more config = larger test matrix
+- Delete unnecessary microservices — if two services always deploy together, merge them (CCP alignment)
+
+## Step 3: Simplify or Optimize
+
+**This step MUST come after "Delete."**
+
+The mistake most people make is skipping the first two steps and starting optimization immediately. If you optimize something that should have been deleted, you are doing negative work. Only when you are certain something must exist should you consider how to make it simpler.
+
+**In software engineering:**
+- Replace complex event systems with direct function calls (if there are no multiple consumers)
+- Replace Strategy pattern with simple if-else (if there are only 2-3 branches)
+- Replace utility functions with inline code (if used only once)
+- Simplify data flow — fewer layers the data passes through, the better
+- Simplify APIs — fewer parameters, convention over configuration
+- KISS: the simplest solution that satisfies the constraint is the correct one
+
+## Step 4: Accelerate Cycle Time
+
+Only after completing the first three steps do you consider acceleration.
+
+"If you're digging your own grave, don't dig faster. Stop first."
+
+**In software engineering:**
+- Accelerate build times (incremental compilation, caching, parallel builds)
+- Accelerate testing (run only affected tests, parallel execution)
+- Accelerate deployment (CI/CD pipeline optimization, shorten feedback loops)
+- Accelerate code review (small-batch commits, clear PR descriptions)
+- Shorten the idea-to-production cycle
+
+## Step 5: Automate
+
+Machines come LAST. Do not start with automation.
+
+Musk admits his biggest mistake on the Model 3 production line was reversing the order — automate first, then accelerate, and finally discover that step wasn't even needed. Only when a process is extremely mature and proven necessary do you hand it to machines.
+
+**In software engineering:**
+- Do it manually a few times to confirm the process is correct, THEN write the automation script
+- Understand the deployment flow first, THEN write CI/CD
+- Manually test the critical path first, THEN write end-to-end automated tests
+- Understand data transformation rules first, THEN write ETL pipelines
+- Code generation and AI-assisted programming are also automation — confirm what you're generating is necessary first
+
+---
+
+## The Full Chain
 
 ```
-质疑 (Question) → 删除 (Delete) → 简化 (Simplify) → 加速 (Accelerate) → 自动化 (Automate)
+Question → Delete → Simplify → Accelerate → Automate
 ```
 
-大多数人的工作流是反过来的：先自动化，再加速，再优化，从不质疑，从不删除。所以我们总是很累且低效。
+Most people's workflow is inverted: automate first, accelerate, optimize, never question, never delete. That is why we are perpetually busy and ineffective.
 
-下次准备大干一场优化某个项目时，先停下来问自己：**"这个东西，真的有存在的必要吗？"**
+Next time you're about to dive into optimizing some project, stop and ask yourself: **"Does this thing even need to exist?"**

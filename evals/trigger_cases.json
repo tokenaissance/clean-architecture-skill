@@ -12,7 +12,7 @@
     "adapter": ["接口", "dto", "gateway", "adapter", "repository", "use case", "controller", "service", "第三方", "SDK", "Stripe", "PayPal"],
     "dataaccess": ["数据访问", "ORM", "数据层"]
   },
-  "negative_patterns": ["翻译一下", "写个标题", "格式化", "总结一下", "不要讲架构", "只解释"],
+  "negative_patterns": ["翻译一下", "写个标题", "格式化", "总结一下", "不要讲架构", "只解释", "太细"],
   "should_trigger": [
     {
       "text": "我的 Express 项目所有业务逻辑都写在 controller 里，数据库查询也直接调用，改一个功能要改好几个文件，怎么分层重构？",
