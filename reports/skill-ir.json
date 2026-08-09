@@ -3,7 +3,7 @@
   "generated_at": "2026-08-09",
   "package": {
     "name": "clean-architecture",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "owner": "Tokenaissance",
     "maturity_tier": "governed",
     "lifecycle_stage": "library",
@@ -80,19 +80,18 @@
   },
   "workflow": {
     "router_rules": [
-      "The frontmatter `description` routes first: only trigger on genuine architecture scenarios — four-layer decomposition, DIP violations, data access layer design, microservice/technology evaluation, over-engineering.",
-      "Once triggered, follow the Workflow below. This skill is an architecture guide, not a general-purpose code review or debugging entrypoint.",
-      "For \"pure code quality, DDD, system design interviews, single-DTO micro-decisions, cache library selection, DI framework debugging, diagram drawing, translation/formatting\" — answer directly; do NOT invoke this skill.",
-      "Respect the user's stack: explain in four-layer terms first, then map to their actual framework (Express/Next.js/Go/Spring). Never hardcode a single framework.",
-      "Terminology is suggestive: default to Entities / Use Cases / Interface Adapters / Frameworks as the canonical layer names. Service/Repository/Controller are implementation-pattern mappings only — not primary layer names. If the user already has established conventions, adopt those.",
-      "Read-only audit requests do NOT modify any files."
+      "Description-based routing: trigger on architecture-significant scenarios — four-layer decomposition, DIP violation, Repository/Adapter boundary design, technology evaluation, over-engineering detection.",
+      "Once triggered, follow Workflow. This is an architecture governance entrypoint, not a debugging or code-review tool.",
+      "Hard-exclusion list (answer directly, do NOT invoke): pure code quality, DDD, system design interviews, single-DTO micro-decisions, cache library selection, DI framework debugging, diagram drawing, translation, formatting.",
+      "Stack-agnostic: explain in canonical four-layer terms (Entities / Use Cases / Interface Adapters / Frameworks & Drivers), then map to the user's actual framework (Express/Next.js/Go/Spring). Service/Repository/Controller are implementation-pattern mappings, not primary layer names. Adopt the user's existing conventions where established.",
+      "Read-only audit requests: zero file modifications."
     ],
     "compact_workflow": [],
     "gate_ladder": [],
     "output_contract": [
-      "Hit scenario: diagnosis + four-layer mapping + Dependency Rule explanation + stack mapping + minimal code example + anti-over-engineering verdict. For major architecture decisions, append L2/L3 documentation skeletons.",
-      "Miss scenario: answer directly; do not apply this skill's template.",
-      "Do NOT output a full directory scaffold (> 5 directories or containing specific file names) unless the user explicitly requests it. Default to layer-level directory suggestions (≤ 5 directory names, no specific files)."
+      "**Hit**: diagnosis + four-layer map + Dependency Rule explication + stack mapping + ≤50-line code example + anti-over-engineering verdict. Major architecture decisions → append L2/L3 documentation skeletons.",
+      "**Miss**: answer directly; suppress this skill's template.",
+      "**Scaffold restraint**: full directory scaffold (> 5 directories or named files) only on explicit request. Default: layer-level directory suggestions (≤ 5 directory names, no specific files)."
     ]
   },
   "resources": {
