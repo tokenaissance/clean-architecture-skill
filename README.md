@@ -2,9 +2,9 @@
 
 > A practical guide to layering, dependency direction, and anti-over-engineering: answer architecture, refactoring, technology-selection, and over-engineering questions with a four-layer model.
 
-[![GitHub Release](https://img.shields.io/github/v/release/tokenaissance/clean-architecture-skill?display_name=tag&sort=semver)](https://github.com/tokenaissance/clean-architecture-skill/releases)
-[![Stars](https://img.shields.io/github/stars/tokenaissance/clean-architecture-skill?style=flat)](https://github.com/tokenaissance/clean-architecture-skill/stargazers)
-[![Last commit](https://img.shields.io/github/last-commit/tokenaissance/clean-architecture-skill)](https://github.com/tokenaissance/clean-architecture-skill/commits/main)
+[![GitHub Release](https://img.shields.io/github/v/release/tokenaissance/clean-architecture?display_name=tag&sort=semver)](https://github.com/tokenaissance/clean-architecture/releases)
+[![Stars](https://img.shields.io/github/stars/tokenaissance/clean-architecture?style=flat)](https://github.com/tokenaissance/clean-architecture/stargazers)
+[![Last commit](https://img.shields.io/github/last-commit/tokenaissance/clean-architecture)](https://github.com/tokenaissance/clean-architecture/commits/main)
 [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](LICENSE)
 [![English](https://img.shields.io/badge/Docs-English-black)](README.md)
 [![中文](https://img.shields.io/badge/Docs-%E4%B8%AD%E6%96%87-red)](docs/README.zh-CN.md)
@@ -20,7 +20,7 @@ explain the dependency direction, and tell me whether microservices are over-eng
 
 It handles: **layering refactoring → dependency inversion (DIP) → data access layer (repository) → technology selection & migration → anti-over-engineering checks**.
 
-**v1.2.0** adds GEB fractal documentation discipline, self-bootstrapping L3 headers on all references, and framework-agnostic violation detection. See [Releases](https://github.com/tokenaissance/clean-architecture-skill/releases) for evidence.
+**v1.2.0** adds GEB fractal documentation discipline, self-bootstrapping L3 headers on all references, and framework-agnostic violation detection. See [Releases](https://github.com/tokenaissance/clean-architecture/releases) for evidence.
 
 ## Why worth using
 
@@ -50,13 +50,13 @@ It handles: **layering refactoring → dependency inversion (DIP) → data acces
 ## Installation
 
 ```bash
-npx skills add tokenaissance/clean-architecture-skill
+npx skills add tokenaissance/clean-architecture
 ```
 
 Install only this skill:
 
 ```bash
-npx skills add tokenaissance/clean-architecture-skill --skill clean-architecture
+npx skills add tokenaissance/clean-architecture --skill clean-architecture
 ```
 
 Verify:
