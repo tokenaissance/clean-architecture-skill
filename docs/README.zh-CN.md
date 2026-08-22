@@ -4,7 +4,7 @@
 
 [![English](https://img.shields.io/badge/Docs-English-black)](../README.md)
 [![中文](https://img.shields.io/badge/Docs-%E4%B8%AD%E6%96%87-red)](README.zh-CN.md)
-[![GitHub Release](https://img.shields.io/github/v/release/tokenaissance/clean-architecture-skill?display_name=tag&sort=semver)](https://github.com/tokenaissance/clean-architecture-skill/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/tokenaissance/clean-architecture?display_name=tag&sort=semver)](https://github.com/tokenaissance/clean-architecture/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](../LICENSE)
 
 `clean-architecture` 不是一个「生成目录脚手架」的技能，而是一套**决策方法**：先诊断，再分层，最后用马斯克五步法拦住过度设计。
@@ -18,7 +18,7 @@ explain the dependency direction, and tell me whether microservices are over-eng
 
 它处理：**分层重构 → 依赖反转（DIP）→ 数据访问层（repository）→ 技术选型与迁移 → 反过度设计检查**。
 
-**v1.2.0** 新增 GEB 分形文档纪律、reference 文件 L3 头部自举、框架无关的违规检测模式。发布证据见 [Releases](https://github.com/tokenaissance/clean-architecture-skill/releases)。
+**v1.2.0** 新增 GEB 分形文档纪律、reference 文件 L3 头部自举、框架无关的违规检测模式。发布证据见 [Releases](https://github.com/tokenaissance/clean-architecture/releases)。
 
 ## 为什么值得用
 
@@ -48,13 +48,13 @@ explain the dependency direction, and tell me whether microservices are over-eng
 ## Installation
 
 ```bash
-npx skills add tokenaissance/clean-architecture-skill
+npx skills add tokenaissance/clean-architecture
 ```
 
 Install only this skill:
 
 ```bash
-npx skills add tokenaissance/clean-architecture-skill --skill clean-architecture
+npx skills add tokenaissance/clean-architecture --skill clean-architecture
 ```
 
 Verify:

@@ -1,6 +1,6 @@
 # Upgrade Summary — clean-architecture v0 → v1.0.0
 
-> 面向发布的 before/after 差异报告。旧技能：个人级 `~/.agents/skills/clean-architecture/`（2026-03-10，16.5KB 单体 SKILL.md）。新技能：公开包 `tokenaissance/clean-architecture-skill` v1.0.0（governed 发布）。
+> 面向发布的 before/after 差异报告。旧技能：个人级 `~/.agents/skills/clean-architecture/`（2026-03-10，16.5KB 单体 SKILL.md）。新技能：公开包 `tokenaissance/clean-architecture` v1.0.0（governed 发布）。
 
 ## v1.1.0 补充（2026-08-05）
 
@@ -41,4 +41,4 @@
 
 ## 发布引用建议
 
-> clean-architecture v1.0.0：从个人笔记级技能升级为公开 governed 包。触发边界 20/20，SKILL.md 从 16.5KB 精简到 4.5KB，写死 Express 改为框架无关 + 用户栈映射，强制术语改为建议语气，新增马斯克五步法反过度设计闸门与 rubric 输出评测。安装：`npx skills add tokenaissance/clean-architecture-skill`。
+> clean-architecture v1.0.0：从个人笔记级技能升级为公开 governed 包。触发边界 20/20，SKILL.md 从 16.5KB 精简到 4.5KB，写死 Express 改为框架无关 + 用户栈映射，强制术语改为建议语气，新增马斯克五步法反过度设计闸门与 rubric 输出评测。安装：`npx skills add tokenaissance/clean-architecture`。

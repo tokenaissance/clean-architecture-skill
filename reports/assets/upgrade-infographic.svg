@@ -14,7 +14,7 @@
   <text x="600" y="118" font-size="46" font-weight="700" fill="#ffffff" text-anchor="middle">clean-architecture 技能升级报告</text>
   <text x="600" y="172" font-size="26" fill="rgba(255,255,255,0.92)" text-anchor="middle">v0 个人笔记级 → v1.1.0 公开 governed 发布包</text>
   <rect x="410" y="196" width="380" height="40" rx="20" fill="rgba(255,255,255,0.16)"/>
-  <text x="600" y="223" font-size="18" fill="#ffffff" text-anchor="middle">npx skills add tokenaissance/clean-architecture-skill</text>
+  <text x="600" y="223" font-size="18" fill="#ffffff" text-anchor="middle">npx skills add tokenaissance/clean-architecture</text>
 
   <text x="95" y="300" font-size="16" fill="#6b7280" text-anchor="middle">对比维度</text>
   <rect x="170" y="280" width="450" height="70" rx="14" fill="#fbe9e7" stroke="#e5604a" stroke-width="2"/>
